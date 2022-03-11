@@ -15,9 +15,8 @@ export default function LoginCard(){
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(formData)
         logInUser(formData);
-        navigate("/")
+        navigate("/");
     }
 
     function handleChange(event){
