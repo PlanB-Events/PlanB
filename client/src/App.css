@@ -28,6 +28,15 @@
   color: #61dafb;
 }
 
+.Nav-links{
+  text-decoration: none;
+  color: gray;
+}
+
+.Nav-links:hover{
+  color: white
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
