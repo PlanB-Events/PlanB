@@ -30,12 +30,6 @@ router.post('/signup', (req, res, next) => {
     return;
   }
   
-  // Use regex to validate the password format
-  const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
-  if (!passwordRegex.test(password)) {
-    res.status(400).json({ message: 'Password must have at least 6 characters and contain at least one number, one lowercase and one uppercase letter.' });
-    return;
-  }
 
 
   // Check the users collection if a user with the same email already exists

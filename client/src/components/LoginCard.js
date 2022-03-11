@@ -1,8 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
+import authService from "../services/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginCard(){
-    const API_URL = "http://localhost:5005";
+    
+    const navigate= useNavigate()
 
     const [formData, setFormData] = useState({
         email: "",
@@ -12,13 +14,9 @@ export default function LoginCard(){
     function handleSubmit(event){
         event.preventDefault();
 
-        axios
-        .post(`${API_URL}/api/user`, formData)
+        authService.login(formData)
         .then((__) =>{
-            setFormData({
-                email: "",
-                password: ""
-            })
+           navigate("/")
         })
     }
 
@@ -37,14 +35,14 @@ export default function LoginCard(){
       
         <label>Email:</label>
         <textarea
-          type="email"
+          type="text"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
         <label>Password:</label>
-        <textarea
-          type="text"
+        <input
+          type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
