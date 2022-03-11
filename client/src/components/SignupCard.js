@@ -1,8 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
+import authService from "../services/auth";
+import {useNavigate} from "react-router-dom";
 
-export default function SignupCard(){
-    const API_URL = "http://localhost:5005";
+export default function SignupCard(props){
+
+    const navigate= useNavigate()
 
     const [formData, setFormData] = useState({
         username: "",
@@ -13,14 +15,11 @@ export default function SignupCard(){
     function handleSubmit(event){
         event.preventDefault();
 
-        axios
-        .post(`${API_URL}/api/user`, formData)
+        console.log(formData)
+    
+        authService.signup(formData)
         .then((__) =>{
-            setFormData({
-                username: "",
-                email: "",
-                password: ""
-            })
+           props.toggleTab()
         })
     }
 
@@ -38,7 +37,7 @@ export default function SignupCard(){
         <label>Username:</label>
         <input 
         type="text" 
-        name="title" 
+        name="username" 
         value={formData.username} 
         onChange={handleChange} />
 
@@ -50,8 +49,8 @@ export default function SignupCard(){
           onChange={handleChange}
         />
         <label>Password:</label>
-        <textarea
-          type="text"
+        <input
+          type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
