@@ -1,6 +1,6 @@
 import "../App.css";
 import { Link } from "react-router-dom";
-
+import PastEventsCard from "../components/PastEventsCard.js";
 
 function HomePage() {
   return (
@@ -15,7 +15,7 @@ function HomePage() {
             <div className="pastEvents">
             <img src="/images/sun-concert-1.jpg" alt=""/>
                 
-                <h3>Check out past events!</h3>
+                <h3>Check out past events!<PastEventsCard /></h3>
                 
             </div>
  
