@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
+import UploadPic from "./pages/AddPicture.jsx";
 
 export default function App() {
   const navigate= useNavigate()
@@ -42,6 +43,10 @@ export default function App() {
           </Nav>
         </Container>
       </Navbar>
+
+      <UploadPic/>
+
+
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
