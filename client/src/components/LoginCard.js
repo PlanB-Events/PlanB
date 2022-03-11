@@ -1,9 +1,11 @@
-import { useState } from "react";
-import authService from "../services/auth";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 export default function LoginCard(){
     
+
+  const {logInUser} = useContext(AuthContext)
     const navigate= useNavigate()
 
     const [formData, setFormData] = useState({
@@ -13,11 +15,9 @@ export default function LoginCard(){
 
     function handleSubmit(event){
         event.preventDefault();
-
-        authService.login(formData)
-        .then((__) =>{
-           navigate("/")
-        })
+        console.log(formData)
+        logInUser(formData);
+        navigate("/")
     }
 
     function handleChange(event){
