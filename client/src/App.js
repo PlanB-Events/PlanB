@@ -21,7 +21,7 @@ export default function App() {
             </Navbar.Brand>
           </Link>
           <Nav className="me-auto">
-            <Link style={{textDecoration: "none"}} to="/"><Nav.Link disabled>Map</Nav.Link></Link>
+            <Link style={{textDecoration: "none"}} to="/auth"><Nav.Link disabled>Map</Nav.Link></Link>
             <Link style={{textDecoration: "none"}} to="/"><Nav.Link disabled>Get me a PlanB!</Nav.Link></Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               <Link style={{textDecoration: 'none'}} to="/"><NavDropdown.Item>Signup</NavDropdown.Item></Link>
@@ -31,10 +31,9 @@ export default function App() {
           </Nav>
         </Container>
       </Navbar>
-      <AuthPage />
-      <HomePage />
       <Routes>
-        <Route exact path={""} element={""} />
+        <Route exact path={"/"} element={<HomePage/>} />
+        <Route exact path={"/auth"} element={<AuthPage/>} />
       </Routes>
     </div>
   );
