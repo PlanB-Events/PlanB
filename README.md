@@ -145,7 +145,7 @@ Space model
 |   "/api/auth/verify"      |      GET         |        (empty)             |Recives decrypted token from server & returns payload|
 |"/api/events/pastevents"|     GET         |        (empty)             |Show all past events   |    
 |"/api/events/futureevents"|   GET         |        (empty)             |Show only all future events |
-|"/api/events-random"   |      GET         |        (empty)             |Show a random event    |
+|"/api/events/random"   |      GET         |        (empty)             |Show a random event    |
 |   "/api/events/:id"   |      GET         |         {id}               |Show a specific event with details|    
 |   "/api/events/:id"   |      PUT         |{space/host, id, name, img, category, description, date, time}| Edit an event |
 |     "/api/events/:id" |      DELETE      |         {id}               |Delete an event |    
