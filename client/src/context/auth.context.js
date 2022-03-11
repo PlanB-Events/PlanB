@@ -53,7 +53,14 @@ function AuthProviderWrapper(props) {
   const logOutUser = () => {
     removeToken();
     authenticateUser();
-  }    
+  }
+
+  const logInUser = (creds) =>{
+    authService.login(creds).then(data=>{
+      storeToken(data.authToken)
+      authenticateUser()
+    })
+  }
 
 
   useEffect(() => {
@@ -64,7 +71,7 @@ function AuthProviderWrapper(props) {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser, logOutUser }}
+      value={{ isLoggedIn, isLoading, user, logInUser, logOutUser }}
     >
       {props.children}
     </AuthContext.Provider>
