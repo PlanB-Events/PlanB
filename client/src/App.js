@@ -31,7 +31,7 @@ export default function App() {
             <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
-              {isLoggedIn && <NavDropdown.Item as={Link} to="/">Profile</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>}
               {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{logOutUser()}}>Logout</NavDropdown.Item>}
             </NavDropdown>
           </Nav>
