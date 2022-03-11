@@ -153,11 +153,11 @@ Space model
 | "/api/user/:id"       |     GET          |        {id}                | Show a specific user  |    
 | "/api/user/:id"       |     PUT          |{id, username, img, events, myspace}|Edit a user    |    
 | "/api/user/:id"       |    DELETE        |        {id}                |Delete a user          |
-| "/api/spaces(hosts)"  |     GET          |        (empty)             |Show a list of spaces  |    
-|"/api/spaces(hosts)/:id"|    GET          |        {id}                |Shows a list of spaces |    
-|"/api/spaces(hosts)/:id"|    POST         |{img, name, capacity, location}|Create a new space  |
-|"/api/spaces(hosts)/:id"|    PUT          |{img, name, capacity, location}|Edit a specific space|
-|"/api/spaces(hosts)/:id"|    DELETE       |        {id}                |Delete an space        |
+| "/api/spaces"   |     GET          |        (empty)             |Show a list of spaces  |    
+|"/api/spaces/:id"|    GET          |        {id}               |Shows a list of spaces |    
+|"/api/spaces/"|    POST         |{img, name, capacity, location}|Create a new space  |
+|"/api/spaces/:id"|    PUT          |{img, name, capacity, location}|Edit a specific space|
+|"/api/spaces/:id"|    DELETE       |        {id}                |Delete an space        |
 
 
 ----------------

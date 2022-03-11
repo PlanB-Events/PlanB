@@ -30,6 +30,10 @@ app.use("/api/user", isAuthenticated, userRouter);
 const eventsRouter = require("./routes/events.routes");
 app.use("/api/events", eventsRouter);
 
+const spacesRouter = require("./routes/spaces.routes");
+app.use("/api/spaces", spacesRouter);
+
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
