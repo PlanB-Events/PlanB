@@ -1,10 +1,13 @@
 import { useState } from "react";
-import authService from "../services/auth";
 import {useNavigate} from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 
 export default function SignupCard(props){
 
-    const navigate= useNavigate()
+    const navigate= useNavigate();
+
+    const {signUpUser} = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         username: "",
@@ -14,13 +17,8 @@ export default function SignupCard(props){
 
     function handleSubmit(event){
         event.preventDefault();
-
-        console.log(formData)
-    
-        authService.signup(formData)
-        .then((__) =>{
-           props.toggleTab()
-        })
+        signUpUser(formData);
+        navigate("/");
     }
 
     function handleChange(event){
