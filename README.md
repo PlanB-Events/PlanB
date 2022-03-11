@@ -145,7 +145,7 @@ Space model
 |   "/api/auth/verify"      |      GET         |        (empty)             |Recives decrypted token from server & returns payload|
 |"/api/events/pastevents"|     GET         |        (empty)             |Show all past events   |    
 |"/api/events/futureevents"|   GET         |        (empty)             |Show only all future events |
-|"/api/events-random"   |      GET         |        (empty)             |Show a random event    |
+|"/api/events/random"   |      GET         |        (empty)             |Show a random event    |
 |   "/api/events/:id"   |      GET         |         {id}               |Show a specific event with details|    
 |   "/api/events/:id"   |      PUT         |{space/host, id, name, img, category, description, date, time}| Edit an event |
 |     "/api/events/:id" |      DELETE      |         {id}               |Delete an event |    
@@ -153,11 +153,11 @@ Space model
 | "/api/user/:id"       |     GET          |        {id}                | Show a specific user  |    
 | "/api/user/:id"       |     PUT          |{id, username, img, events, myspace}|Edit a user    |    
 | "/api/user/:id"       |    DELETE        |        {id}                |Delete a user          |
-| "/api/spaces(hosts)"  |     GET          |        (empty)             |Show a list of spaces  |    
-|"/api/spaces(hosts)/:id"|    GET          |        {id}                |Shows a list of spaces |    
-|"/api/spaces(hosts)/:id"|    POST         |{img, name, capacity, location}|Create a new space  |
-|"/api/spaces(hosts)/:id"|    PUT          |{img, name, capacity, location}|Edit a specific space|
-|"/api/spaces(hosts)/:id"|    DELETE       |        {id}                |Delete an space        |
+| "/api/spaces"   |     GET          |        (empty)             |Show a list of spaces  |    
+|"/api/spaces/:id"|    GET          |        {id}               |Shows a list of spaces |    
+|"/api/spaces/"|    POST         |{img, name, capacity, location}|Create a new space  |
+|"/api/spaces/:id"|    PUT          |{img, name, capacity, location}|Edit a specific space|
+|"/api/spaces/:id"|    DELETE       |        {id}                |Delete an space        |
 
 
 ----------------
