@@ -21,19 +21,19 @@ class AuthService {
   }
 
   login = (requestBody) => {
-    return this.api.post("/auth/login", requestBody);
+    return this.api.post("/auth/login", requestBody).then(response=>response.data)
     // same as 
     // return axios.post("http://localhost:5005/auth/login");
   };
 
   signup = (requestBody) => {
-    return this.api.post("/auth/signup", requestBody);
+    return this.api.post("/auth/signup", requestBody).then(response=>response.data)
     // same as
     // return axios.post("http://localhost:5005/auth/singup");
   };
 
   verify = (storedToken) => {
-    return this.api.get("/auth/verify", { headers: { Authorization: `Bearer ${storedToken}`} });
+    return this.api.get("/auth/verify", { headers: { Authorization: `Bearer ${storedToken}`} }).then(response=>response.data)
     // same as
     // return axios.post("http://localhost:5005/auth/verify");
   };

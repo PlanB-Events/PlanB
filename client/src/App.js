@@ -5,13 +5,18 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import logo from "./assets/icon2.png"
+import logo from "./assets/icon2.png";
+import { AuthContext } from "./context/auth.context.js";
+import { useContext } from "react";
 
 export default function App() {
+
+  const {isLoggedIn, logOutUser} = useContext(AuthContext);
+
   return (
     <div className="App">
      
-      {/* <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
@@ -22,16 +27,16 @@ export default function App() {
             </Navbar.Brand>
           </Link>
           <Nav className="me-auto">
-            <Link style={{textDecoration: "none"}} to="/auth"><Nav.Link disabled>Map</Nav.Link></Link>
-            <Link style={{textDecoration: "none"}} to="/"><Nav.Link disabled>Get me a PlanB!</Nav.Link></Link>
+            <Nav.Link as={Link} to="/auth">Map</Nav.Link>
+            <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
-              <Link style={{textDecoration: 'none'}} to="/"><NavDropdown.Item>Signup</NavDropdown.Item></Link>
-              <Link style={{textDecoration: 'none'}} to="/"><NavDropdown.Item>Login</NavDropdown.Item></Link>
-              <Link style={{textDecoration: 'none'}} to="/"><NavDropdown.Item>Logout</NavDropdown.Item></Link>
+              {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as={Link} to="/">Profile</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{logOutUser()}}>Logout</NavDropdown.Item>}
             </NavDropdown>
           </Nav>
         </Container>
-      </Navbar> */}
+      </Navbar>
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
