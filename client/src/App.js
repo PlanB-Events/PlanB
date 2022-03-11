@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage.js";
 import HomePage from "./pages/HomePage.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,8 +9,14 @@ import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
 
 export default function App() {
+  const navigate= useNavigate()
 
   const {isLoggedIn, logOutUser} = useContext(AuthContext);
+
+  function handleLogOut(){
+    logOutUser();
+    navigate("/");
+  }
 
   return (
     <div className="App">
@@ -31,7 +37,7 @@ export default function App() {
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
               {isLoggedIn && <NavDropdown.Item as={Link} to="/">Profile</NavDropdown.Item>}
-              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{logOutUser()}}>Logout</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{handleLogOut()}}>Logout</NavDropdown.Item>}
             </NavDropdown>
           </Nav>
         </Container>

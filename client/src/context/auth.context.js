@@ -62,6 +62,13 @@ function AuthProviderWrapper(props) {
     })
   }
 
+  const signUpUser = (creds) =>{
+    authService.signup(creds).then(data=>{
+      storeToken(data.authToken)
+      authenticateUser()
+    })
+  }
+
 
   useEffect(() => {
     // Run the function after the initial render,
@@ -71,7 +78,7 @@ function AuthProviderWrapper(props) {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, isLoading, user, logInUser, logOutUser }}
+      value={{ isLoggedIn, isLoading, user, signUpUser, logInUser, logOutUser }}
     >
       {props.children}
     </AuthContext.Provider>
