@@ -5,16 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import logo from "./assets/icon2.png";
-import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "./context/auth.context.js";
+import { useContext } from "react";
 
 export default function App() {
 
-  const navigate =  useNavigate();
+  const {isLoggedIn, logOutUser} = useContext(AuthContext);
 
   return (
     <div className="App">
      
-      {/* <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
@@ -28,13 +29,13 @@ export default function App() {
             <Nav.Link as={Link} to="/auth">Map</Nav.Link>
             <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
-              <NavDropdown.Item>Signup</NavDropdown.Item>
-              <NavDropdown.Item>Login</NavDropdown.Item>
-              <NavDropdown.Item>Logout</NavDropdown.Item>
+              {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as={Link} to="/">Profile</NavDropdown.Item>}
+              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{logOutUser()}}>Logout</NavDropdown.Item>}
             </NavDropdown>
           </Nav>
         </Container>
-      </Navbar> */}
+      </Navbar>
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
