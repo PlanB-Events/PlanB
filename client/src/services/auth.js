@@ -2,8 +2,9 @@ import axios from "axios";
 
 class AuthService {
   constructor() {
+    console.log("REACT_APP_API_URL: ", process.env.REACT_APP_API_URL)
     this.api = axios.create({
-      baseURL: process.env.PLANB_API_URL,
+      baseURL: process.env.REACT_APP_API_URL,
     });
 
     // Automatically set JWT token in the headers for every request

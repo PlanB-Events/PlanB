@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="App">
      
-      <Navbar bg="dark" variant="dark">
+      {/* <Navbar bg="dark" variant="dark">
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
@@ -30,7 +30,7 @@ export default function App() {
             </NavDropdown>
           </Nav>
         </Container>
-      </Navbar>
+      </Navbar> */}
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />

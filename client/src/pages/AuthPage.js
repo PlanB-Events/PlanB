@@ -18,7 +18,7 @@ export default function AuthPage(){
             <button onClick={()=>{if(loginTab){toggleTab()}}}> Signup </button> 
             <button  onClick={()=>{if(signupTab){toggleTab()}}}> Login </button> 
             {loginTab && <LoginCard />}
-            {signupTab && <SignupCard />}
+            {signupTab && <SignupCard toggleTab={toggleTab}/>}
 
         </div>
     )
