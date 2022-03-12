@@ -12,12 +12,12 @@ export default function ProfilePage(){
         .then(foundUser =>{
             setCurrentUser(foundUser)
         })
-    }, [])
+    }, [id])
 
     return( currentUser._id ? 
         <div>
             <h1>This is Profile page</h1>
-            <img src={currentUser.imageUrl} height="150px" width="150px"/>
+            <img src={currentUser.imageUrl} alt="profileimg" height="150px" width="150px"/>
             <h4>Name:</h4>
             <p>{currentUser.username}</p>
             <h4>Email:</h4>

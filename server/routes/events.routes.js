@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
-const Event = require("../models/Event.model")
+const Event = require("../models/Event.model");
+const User = require("../models/User.model");
 
 // GET "/api/events/pastevents" 
 
@@ -88,11 +89,15 @@ router.delete("/:id", (req, res, next)=>{
 
 // POST "/api/events" - Create an event
 router.post("/", (req, res, next)=>{
-    const {space, id, name, img, category, description, date, time} = req.body
+    const {location, id, title, imageUrl, category, description, date, time, duration} = req.body
 
-    Event.create({space, id, name, img, category, description, date, time})
-    .then((response) => res.json(response))
-    .catch((error)=> res.json(error))
+    User.findById(id)
+    .then((user)=>{
+        Event.create({location, $set: {producer: user._id}, title, imageUrl, category, description, date, time, duration})
+        .then((createdEvent) => res.json(createdEvent))
+        .catch((error)=> res.json(error))
+
+    })
 })
 
 module.exports = router;
