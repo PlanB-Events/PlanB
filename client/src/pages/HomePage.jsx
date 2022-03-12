@@ -15,7 +15,8 @@ function HomePage() {
             <div className="pastEvents">
             <img src="/images/sun-concert-1.jpg" alt=""/>
                 
-                <h3>Check out past events!<PastEventsCard /></h3>
+                <h3>Check out past events!</h3>
+                <PastEventsCard />
                 
             </div>
  

@@ -1,3 +1,4 @@
+import { Carousel } from "react-bootstrap";
 
 
 
@@ -20,15 +21,17 @@ export default function PastEventsCard(){
 
     return(
         <div>
-      
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className="demo-item"
-          style={{ backgroundImage: "url(" + image.src + ")" }}
-        />
-      ))}
-      
+      <Carousel>
+      {images.forEach((image) => {return(
+        <Carousel.Item>
+            <img
+            className="d-block w-100"
+            src={image.src}
+            alt="First slide"
+            />
+        </Carousel.Item>
+      )})}
+      </Carousel>
         </div>
     )
 }
