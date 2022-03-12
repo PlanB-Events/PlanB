@@ -4,7 +4,7 @@ export default function EventsCreatePage(){
 
     return(
         <div>
-            <createEventCard />
+            <CreateEventCard />
         </div>
     )
 }

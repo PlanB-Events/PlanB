@@ -7,12 +7,12 @@ class EventsService {
       });
     }
 
-    createEvent = (event) => {
-        return this.api.post("/events", event).then(res => res.data)
+    createEvent = (requestBody) => {
+        return this.api.post("/events", requestBody).then(res => res.data)
     };
 
-    getEvent = (event) => {
-        return this.api.get("/events/:id", event._id).then(response=>response.data)
+    getEvent = (id) => {
+        return this.api.get(`/events/${id}`).then(response=>response.data)
       };
 
 }
