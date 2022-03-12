@@ -4,7 +4,7 @@ const spaceSchema = new Schema(
   {
     owner: { type: Schema.Types.ObjectId, ref: "User"},
     name: {type: String, required: true},
-    imgUrl: {type: String, required: true},
+    imageUrl: {type: String, required: true},
     description: String,
     availableDates: [{type: Date, min: 1, required: true}],
     availableHours: [{type: String, min: 1, required: true}],

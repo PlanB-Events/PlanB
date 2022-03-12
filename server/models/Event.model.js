@@ -4,7 +4,7 @@ const eventSchema = new Schema(
   {
     producer: { type: Schema.Types.ObjectId, ref: "User"},
     title: {type: String, required: true},
-    imgUrl: {type: String, required: true},
+    imageUrl: {type: String, required: true},
     description: String,
     date: {type: Date, required: true},
     time: {type: String, required: true},
