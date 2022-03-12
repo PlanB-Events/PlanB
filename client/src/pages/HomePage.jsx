@@ -2,6 +2,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import PastEventsCard from "../components/PastEventsCard.js";
 
+
 function HomePage() {
   return (
     <div className="App pageContainer">

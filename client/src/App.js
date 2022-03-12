@@ -1,6 +1,9 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage.js";
 import HomePage from "./pages/HomePage.jsx";
+import EventsMainPage from "./pages/EventsMainPage";
+import EventsListPage from "./pages/EventsListPage";
+import EventsCreatePage from "./pages/EventsCreatePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
@@ -47,6 +50,9 @@ export default function App() {
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
+        <Route exact path={"/events"} element={<EventsMainPage/>} />
+        <Route exact path={"/events/category-list"} element={<EventsListPage/>} />
+        <Route exact path={"/events/create"} element={<EventsCreatePage/>} />
       </Routes>
     </div>
   );

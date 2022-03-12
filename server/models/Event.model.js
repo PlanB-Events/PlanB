@@ -6,6 +6,11 @@ const eventSchema = new Schema(
     title: {type: String, required: true},
     imageUrl: {type: String, required: true},
     description: String,
+    typeOfEvent: {
+      type: String,
+      enum: ['Concert', 'Sport', 'Cooking', 'Cultural', 'Social', 'Other'],
+      required: true
+  },
     date: {type: Date, required: true},
     time: {type: String, required: true},
     duration: {type: Number, default: 1},
