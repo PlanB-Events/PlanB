@@ -1,24 +1,30 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage.js";
 import HomePage from "./pages/HomePage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
+import LoadingComponent from "./components/Loading"
+
+
 
 export default function App() {
   const navigate= useNavigate()
 
-  const {isLoggedIn, logOutUser} = useContext(AuthContext);
+  const {isLoggedIn, logOutUser, user, isLoading} = useContext(AuthContext);
 
   function handleLogOut(){
     logOutUser();
     navigate("/");
   }
 
-  return (
+  return ( isLoading ?
+    <LoadingComponent />
+    :
     <div className="App">
      
       <Navbar bg="dark" variant="dark">
@@ -36,17 +42,17 @@ export default function App() {
             <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
-              {isLoggedIn && <NavDropdown.Item as={Link} to="/">Profile</NavDropdown.Item>}
-              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{handleLogOut()}}>Logout</NavDropdown.Item>}
+             {isLoggedIn && <NavDropdown.Item as={Link} to={`/profile/${user._id}`}>Profile</NavDropdown.Item>}
+             {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{handleLogOut()}}>Logout</NavDropdown.Item>}
             </NavDropdown>
           </Nav>
         </Container>
       </Navbar>
 
-
       <Routes>
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
+        <Route exact path={"/profile/:id"} element={<ProfilePage />} />
       </Routes>
     </div>
   );
