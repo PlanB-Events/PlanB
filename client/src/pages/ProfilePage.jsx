@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import userService from "../services/users"
 import LoadingComponent from "../components/Loading"
 
@@ -27,15 +27,16 @@ export default function ProfilePage(){
             {currentUser.joinedEvents.map((element) => { 
                 return (
                     <li>{element.title}</li>
-                )}
-                )
+                )})
             }
-                
             </ul>
+            
+             <button>Edit profile</button>
 
-            <button>Edit profile</button>
-            <button>Create an Event</button>
-            <button>Become a host</button>
+            <Link to="/events/create"> <button>Create an Event</button> </Link>
+
+            <Link to="/profile/myspace"> <button>Become a host</button></Link>
+
         </div>
         : <LoadingComponent />
     )
