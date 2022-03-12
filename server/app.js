@@ -25,7 +25,7 @@ const authRouter = require("./routes/auth.routes");
 app.use("/api/auth", authRouter);
 
 const userRouter = require("./routes/user.routes");
-app.use("/api/user", isAuthenticated, userRouter);
+app.use("/api/user", userRouter);
 
 const eventsRouter = require("./routes/events.routes");
 app.use("/api/events", eventsRouter);

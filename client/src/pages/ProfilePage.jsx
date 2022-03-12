@@ -1,24 +1,42 @@
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import userService from "../services/users"
+import LoadingComponent from "../components/Loading"
+
 
 export default function ProfilePage(){
+    const {id} = useParams("id")
+    const [currentUser, setCurrentUser] = useState({})
+    useEffect(()=>{
+        userService.getUser(id)
+        .then(foundUser =>{
+            setCurrentUser(foundUser)
+        })
+    }, [])
 
-
-    return(
+    return( currentUser._id ? 
         <div>
             <h1>This is Profile page</h1>
-            <img src="https://wilcity.com/wp-content/uploads/2020/06/115-1150152_default-profile-picture-avatar-png-green.jpg" height="150px" width="150px"/>
+            <img src={currentUser.imageUrl} height="150px" width="150px"/>
             <h4>Name:</h4>
-            <p></p>
+            <p>{currentUser.username}</p>
             <h4>Email:</h4>
-            <p></p>
+            <p>{currentUser.email}</p>
             <h4>Events joined:</h4>
             <ul>
-                <li></li>
+            {currentUser.joinedEvents.map((element) => { 
+                return (
+                    <li>{element.title}</li>
+                )}
+                )
+            }
+                
             </ul>
 
             <button>Edit profile</button>
             <button>Create an Event</button>
             <button>Become a host</button>
         </div>
-
+        : <LoadingComponent />
     )
 }

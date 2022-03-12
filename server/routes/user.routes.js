@@ -12,6 +12,7 @@ router.get("/:id", (req, res, next)=>{
     }
 
     User.findById(req.params.id)
+    .populate("joinedEvents createdEvents")
     .then((user)=>res.status(200).json(user))
     .catch(error => res.json(error))
 })

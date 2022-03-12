@@ -6,7 +6,7 @@ const AuthContext = React.createContext();
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
@@ -23,25 +23,25 @@ function AuthProviderWrapper(props) {
       authService.verify(storedToken)
       .then((response) => {
         // If the server verifies that JWT token is valid  ✅
-        const user = response.data;
+        const user = response;
        // Update state variables        
         setIsLoggedIn(true);
-        setIsLoading(false);
         setUser(user);
+        setIsLoading(false);
       })
       .catch((error) => {
         // If the server sends an error response (invalid token) ❌
         // Update state variables        
         setIsLoggedIn(false);
         setIsLoading(false);
-        setUser(null);
+        setUser({});
       });
 
     } else {
       // If the token is not available
       setIsLoggedIn(false);
       setIsLoading(false);
-      setUser(null);
+      setUser({});
     }
   }
 
