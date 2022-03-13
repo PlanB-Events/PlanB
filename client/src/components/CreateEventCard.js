@@ -57,7 +57,6 @@ export default function CreateEventCard(){
     return(
         <div className="createEventCard">
         <h3>Create a new event</h3>
-        <h3>Welcome back, we missed you</h3>
 
         <form onSubmit={handleSubmit}>
       

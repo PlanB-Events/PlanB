@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import userService from "../services/users"
 import LoadingComponent from "../components/Loading"
-
+import EditProfileCard from "../components/EditProfileCard"
 
 export default function ProfilePage(){
     const {id} = useParams("id")
@@ -13,6 +13,13 @@ export default function ProfilePage(){
             setCurrentUser(foundUser)
         })
     }, [id])
+
+    const [editTab, setEditTab] = useState(false)
+
+    function toggleEdit(){
+        setEditTab(!editTab)
+    }
+    
 
     return( currentUser._id ? 
         <div>
@@ -27,15 +34,18 @@ export default function ProfilePage(){
             {currentUser.joinedEvents.map((element) => { 
                 return (
                     <li>{element.title}</li>
-                )}
-                )
+                )})
             }
-                
             </ul>
+            
+            
+            <Link to="/events/create"> <button>Create an Event</button> </Link>
 
-            <button>Edit profile</button>
-            <button>Create an Event</button>
-            <button>Become a host</button>
+            <Link to="/profile/myspace"> <button>Create a space</button></Link>
+
+             <button onClick={()=> toggleEdit()}>Edit profile</button>
+             {editTab && <EditProfileCard />}
+
         </div>
         : <LoadingComponent />
     )

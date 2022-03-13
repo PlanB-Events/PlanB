@@ -12,6 +12,7 @@ import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
 import LoadingComponent from "./components/Loading"
+import MySpacePage from "./pages/MySpacePage"
 
 
 
@@ -59,6 +60,7 @@ export default function App() {
         <Route exact path={"/events/category-list"} element={<EventsListPage/>} />
         <Route exact path={"/events/create"} element={<EventsCreatePage/>} />
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
+        <Route exact path={"/profile/myspace"} element={<MySpacePage />} />
       </Routes>
     </div>
   );
