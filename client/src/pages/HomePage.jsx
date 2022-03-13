@@ -13,12 +13,9 @@ function HomePage() {
                 </Link>
             </div>
 
-            <div className="pastEvents">
-            <img width={400} src="/images/sun-concert-1.jpg" alt=""/>
-                
-                <h3>Check out past events!</h3>
-                <PastEventsCard />
-                
+            <div className="pastEvents">  
+              <PastEventsCard />
+              <h3>Check out past events!</h3>
             </div>
  
             <div className="findEvent">
