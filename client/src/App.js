@@ -12,7 +12,7 @@ import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
 import LoadingComponent from "./components/Loading"
-
+import EventsDetailsPage from "./pages/EventsDetailPage"
 
 
 export default function App() {
@@ -56,8 +56,9 @@ export default function App() {
         <Route exact path={"/"} element={<HomePage/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
         <Route exact path={"/events"} element={<EventsMainPage/>} />
-        <Route exact path={"/events/category-list"} element={<EventsListPage/>} />
+        <Route exact path={"/events/:category/list"} element={<EventsListPage/>} />
         <Route exact path={"/events/create"} element={<EventsCreatePage/>} />
+        <Route exact path={"/events/:id"} element={<EventsDetailsPage/>} />
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
       </Routes>
     </div>

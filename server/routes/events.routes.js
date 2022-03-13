@@ -5,30 +5,20 @@ const User = require("../models/User.model");
 
 // GET "/api/events/pastevents" 
 
-router.get("/pastevents", (req, res, next)=>{
-
-    Event.find()
-    .then((events)=> {
-        let currentDate = new Date.toString()
-        const pastEvents = events.map((event)=>{
-            event.date.toString() < currentDate
-        })
-        res.json(pastEvents)
-    })
-    .catch((error)=>res.json(error))
-})
 
 // GET "/api/events/futureevents"
 
-router.get("/futureevents", (req, res, next)=>{
+router.get("/list/:category", (req, res, next)=>{
+    let currentDate = new Date;
 
-    Event.find()
+    Event.find({"date": {$gte: new Date()}})
     .then((events)=> {
-        let currentDate = new Date.toString()
-        const futureEvents = events.map((event)=>{
-            event.date.toString() > currentDate
-        })
-        res.json(futureEvents)
+        const selectedEvents =  events.map((event)=>{
+            if(req.params.category === "all") return event
+            else if (event.category.toLowerCase() === req.params.category) return event
+            else return false
+        }).filter(Boolean);
+        res.json(selectedEvents)
     })
     .catch((error)=>res.json(error))
 })
@@ -96,8 +86,20 @@ router.post("/", (req, res, next)=>{
         Event.create({location, $set: {producer: user._id}, title, imageUrl, category, description, date, time, duration})
         .then((createdEvent) => res.json(createdEvent))
         .catch((error)=> res.json(error))
-
+        
     })
 })
 
+router.get("/pastevents", (req, res, next)=>{
+
+    Event.find()
+    .then((events)=> {
+        let currentDate = new Date.toString()
+        const pastEvents = events.map((event)=>{
+            event.date.toString() < currentDate
+        })
+        res.json(pastEvents)
+    })
+    .catch((error)=>res.json(error))
+})
 module.exports = router;

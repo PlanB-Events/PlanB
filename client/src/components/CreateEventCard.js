@@ -43,7 +43,7 @@ export default function CreateEventCard(){
       eventsService.createEvent(formData)
       .then((__)=>{
           console.log(formData);
-          navigate("/");
+          navigate("/events");
         })
       .catch(err => console.log("Error while creating the event: ", err));
     }
