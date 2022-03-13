@@ -7,32 +7,26 @@ export default function PastEventsCard(){
     const images = [
         {
           src:
-            "/public/images/sun-concert-1.jpg"
+            "/images/sun-concert-1.jpg"
         },
         {
           src:
-            "/public/images/sportsPB/workout-1.jpg"
+            "/images/sportsPB/workout-1.jpg"
         },
         {
           src:
-            "/public/images/botanical-gardens-concert.jpg"
+            "/images/pedralbes-festival.jpg"
         }
       ];
 
     return(
-        <div>
-      <Carousel>
-      {images.forEach((image) => {return(
-        <Carousel.Item>
-            <img
-            className="d-block w-100"
-            src={image.src}
-            alt="First slide"
-            />
-        </Carousel.Item>
-      )})}
-      </Carousel>
-        </div>
+          <Carousel  style={{width: 400, margin: 0}}>
+          {images.map((image) => {return(
+            <Carousel.Item key={images.indexOf(image)}>
+                <img className="d-block w-100" src={image.src} alt="imgSlide" />
+            </Carousel.Item>
+          )})}
+          </Carousel>
     )
 }
 

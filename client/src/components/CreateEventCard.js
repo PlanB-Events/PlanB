@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
 import cloudinaryService from "../services/cloudinary";
@@ -12,49 +12,46 @@ export default function CreateEventCard(){
 
     const [imageUrl, setImageUrl] = useState("");
 
-    const handleFileUpload = (e) => {
-        // console.log("The file to be uploaded is: ", e.target.files[0]);
-    
-        const uploadData = new FormData();
-    
-        // imageUrl => this name has to be the same as in the model since we pass
-        // req.body to .create() method when creating a new movie in '/api/movies' POST route
-        uploadData.append("imageUrl", e.target.files[0]);
-    
-        cloudinaryService
-          .uploadImage(uploadData)
-          .then(response => {
-            setImageUrl(response.fileUrl);
-          })
-          .catch(err => console.log("Error while uploading the file: ", err));
-      };
-
     const [formData, setFormData] = useState({
-        id: user._id,
-        title: "",
-        category: "",
-        imageUrl: imageUrl,
-        date: "",
-        time: "",
-        duration: 1,
-        location: null
+      id: user._id,
+      title: "",
+      category: "",
+      imageUrl: "",
+      date: "",
+      time: "",
+      duration: 1,
+      location: null
     });
 
+    const handleFileUpload = (event) => {
+  
+      const uploadData = new FormData();
+
+      uploadData.append("imageUrl", event.target.files[0]);
+  
+      cloudinaryService.uploadImage(uploadData)
+      .then(response => {
+        setImageUrl(response.fileUrl);
+        setFormData(formData =>({...formData,[event.target.name]: response.fileUrl }));
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+    };
 
     function handleSubmit(event){
-        event.preventDefault();
-        
-        eventsService
-        .createEvent(formData)
-        .then((__)=>{
-            console.log(formData)})
-        .catch(err => console.log("Error while creating the event: ", err));
+      event.preventDefault();
+      
+      eventsService.createEvent(formData)
+      .then((__)=>{
+          console.log(formData);
+          navigate("/");
+        })
+      .catch(err => console.log("Error while creating the event: ", err));
     }
 
     function handleChange(event){
-        const key = event.target.name 
-        const value = event.target.value
-        setFormData(formData =>({...formData,[key]: value }))
+        const key = event.target.name;
+        const value = event.target.value;
+        setFormData(formData =>({...formData,[key]: value }));
     }
 
     return(
@@ -81,9 +78,8 @@ export default function CreateEventCard(){
         />
 
         <label>Image:</label>
-        <img src={imageUrl} 
-        alt="img-previsualization"/>
-        <input type="file" onChange={(e) => handleFileUpload(e)} />
+        <img width={400} src={imageUrl} alt="img-previsualization"/>
+        <input name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
 
 
         <label> Date:</label>
