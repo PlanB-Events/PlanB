@@ -12,6 +12,7 @@ import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
 import LoadingComponent from "./components/Loading"
+import MapPage from "./pages/MapPage.jsx";
 
 
 
@@ -19,6 +20,7 @@ export default function App() {
   const navigate= useNavigate()
 
   const {isLoggedIn, logOutUser, user, isLoading} = useContext(AuthContext);
+  
 
   function handleLogOut(){
     logOutUser();
@@ -59,6 +61,8 @@ export default function App() {
         <Route exact path={"/events/category-list"} element={<EventsListPage/>} />
         <Route exact path={"/events/create"} element={<EventsCreatePage/>} />
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
+
+        <Route exact path={"/events/map"} element={<MapPage />} />
       </Routes>
     </div>
   );
