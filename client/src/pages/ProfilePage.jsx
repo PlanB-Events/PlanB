@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import userService from "../services/users"
 import LoadingComponent from "../components/Loading"
-
+import EditProfileCard from "../components/EditProfileCard"
 
 export default function ProfilePage(){
     const {id} = useParams("id")
@@ -13,6 +13,13 @@ export default function ProfilePage(){
             setCurrentUser(foundUser)
         })
     }, [id])
+
+    const [editTab, setEditTab] = useState(false)
+
+    function toggleEdit(){
+        setEditTab(!editTab)
+    }
+    
 
     return( currentUser._id ? 
         <div>
@@ -31,11 +38,13 @@ export default function ProfilePage(){
             }
             </ul>
             
-             <button>Edit profile</button>
-
+            
             <Link to="/events/create"> <button>Create an Event</button> </Link>
 
-            <Link to="/profile/myspace"> <button>Become a host</button></Link>
+            <Link to="/profile/myspace"> <button>Create a space</button></Link>
+
+             <button onClick={()=> toggleEdit()}>Edit profile</button>
+             {editTab && <EditProfileCard />}
 
         </div>
         : <LoadingComponent />

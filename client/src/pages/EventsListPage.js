@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams, navigate, useNavigate } from "react-router-dom";
-import eventsService from "../services/events";
+// import eventsService from "../services/events";
 
 export default function EventsListPage(props){
 
