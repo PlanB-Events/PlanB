@@ -78,8 +78,7 @@ export default function CreateEventCard(){
         />
 
         <label>Image:</label>
-        <img src={imageUrl} 
-        alt="img-previsualization"/>
+        <img width={400} src={imageUrl} alt="img-previsualization"/>
         <input name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
 
 
