@@ -13,6 +13,7 @@ import { AuthContext } from "./context/auth.context.js";
 import { useContext } from "react";
 import LoadingComponent from "./components/Loading"
 import MapPage from "./pages/MapPage.jsx";
+import MySpacePage from "./pages/MySpacePage"
 
 
 
@@ -63,6 +64,7 @@ export default function App() {
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
 
         <Route exact path={"/events/map"} element={<MapPage />} />
+        <Route exact path={"/profile/myspace"} element={<MySpacePage />} />
       </Routes>
     </div>
   );
