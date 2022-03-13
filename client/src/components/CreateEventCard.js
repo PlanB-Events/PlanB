@@ -19,6 +19,7 @@ export default function CreateEventCard(){
       imageUrl: "",
       date: "",
       time: "",
+      description: "",
       duration: 1,
       location: null
     });
@@ -32,7 +33,7 @@ export default function CreateEventCard(){
       cloudinaryService.uploadImage(uploadData)
       .then(response => {
         setImageUrl(response.fileUrl);
-        setFormData(formData =>({...formData,[event.target.name]: response.fileUrl }));
+        setFormData(formData =>({...formData, [event.target.name]: response.fileUrl }));
       })
       .catch(err => console.log("Error while uploading the file: ", err));
     };
@@ -43,7 +44,7 @@ export default function CreateEventCard(){
       eventsService.createEvent(formData)
       .then((__)=>{
           console.log(formData);
-          navigate("/");
+          navigate("/events");
         })
       .catch(err => console.log("Error while creating the event: ", err));
     }
@@ -57,6 +58,7 @@ export default function CreateEventCard(){
     return(
         <div className="createEventCard">
         <h3>Create a new event</h3>
+        <h2>Join a community run by artists for artists.</h2>
 
         <form onSubmit={handleSubmit}>
       
@@ -94,6 +96,14 @@ export default function CreateEventCard(){
           type="text"
           name="time"
           value={formData.time}
+          onChange={handleChange}
+        />
+
+        <label>Description:</label>
+        <input
+          type="text"
+          name="description"
+          value={formData.description}
           onChange={handleChange}
         />
 

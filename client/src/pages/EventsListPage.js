@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams, navigate, useNavigate } from "react-router-dom";
+import eventsService from "../services/events";
+import EventCard from "../components/EventCard";
+import LoadingComponent from "../components/Loading";
 // import eventsService from "../services/events";
 
 export default function EventsListPage(props){
 
     const [eventsData, setEventsData] = useState([]);
-    const params = useParams(); 
+    const {category}= useParams("category"); 
 
-    const {
-        event: { _id, title, imageUrl, typeOfEvent, date },
-      } = props;
+    useEffect(()=>{
+        eventsService.getSelectedEvents(category)
+        .then((selectedEvents)=>{
+            setEventsData(selectedEvents)})
+    }, [category])
 
-    return(
+
+    return(eventsData.length ?
         <div>
             <div className="filter-btn">
             <button>Choose a date button</button>
@@ -21,15 +27,12 @@ export default function EventsListPage(props){
         <div>
             {eventsData.map((event) => (
                 <div style={{ maxWidth: "400px" }} key={event._id} className="card">
-                <img src={event.imageUrl} alt="eventImg" />
-                <Link to={`/events/${event._id}`}>
-                    <h1>{event.title}</h1>
-                </Link>
-                <h3>{event.typeOfEvent}</h3>
-                <h2>{event.date}</h2>
+               <EventCard event = {event}/>
                 </div>
                 ))}
           </div>
         </div>
+        :
+        <div>No events found</div>
     )
 }
