@@ -20,8 +20,6 @@ router.get("/:id", (req, res, next)=>{
 //PUT USER profile -> /api/user/:id -  Edit a specific user by id
 
 router.put("/:id", (req, res, next)=>{
-   
-
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         res.status(400).json({ message: "Specified id is not valid" });
         return;

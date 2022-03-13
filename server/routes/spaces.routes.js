@@ -2,9 +2,9 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 
 const Space = require("../models/Space.model");
-      
+const User = require("../models/User.model");
 
-//GET SPACE  -> /api/space/:id -  Retrieves a specific space
+//GET SPACE  -> /api/spaces/:id -  Retrieves a specific space
 router.get("/:id", (req,res, next)=>{
 
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -18,7 +18,7 @@ router.get("/:id", (req,res, next)=>{
 })
 
 
-//PUT SPACE  -> /api/space/:id -  Edit a specific space
+//PUT SPACE  -> /api/spaces/:id -  Edit a specific space
 router.put("/:id", (req, res, next)=>{
 
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -34,17 +34,20 @@ router.put("/:id", (req, res, next)=>{
 })
 
 
-//POST SPACE -> /api/space/ -  Creates a space
+//POST SPACE -> /api/spaces/ -  Creates a space
 router.post("/", (req, res, next)=>{
-    const {img, name, capacity, location} = req.body
+    const {id, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess} = req.body
 
-    Space.create({img, name, capacity, location})
-    .then((response) => res.json(response))
-    .catch((error)=> res.json(error))
+    User.findById(id)
+    .then((user)=>{
+        Space.create({$set: {owner: user._id}, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess})
+        .then((createdSpace) => res.json(createdSpace))
+        .catch((error)=> res.json(error))
+    })
 })
 
 
-// DELETE SPACE -> /api/space/:id -  Delete a space
+// DELETE SPACE -> /api/spaces/:id -  Delete a space
 router.delete("/:id", (req, res, next)=>{
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         res.status(400).json({ message: "Specified id is not valid" });
@@ -61,7 +64,7 @@ router.delete("/:id", (req, res, next)=>{
 })
 
 
-//GET SPACE  -> /api/space/ -  Retrieves all spaces
+//GET SPACE  -> /api/spaces/ -  Retrieves all spaces
 
 router.get("/", (req,res, next)=>{
     Space.find()

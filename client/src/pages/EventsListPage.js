@@ -4,6 +4,7 @@ import { useParams, navigate, useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
 import EventCard from "../components/EventCard";
 import LoadingComponent from "../components/Loading";
+// import eventsService from "../services/events";
 
 export default function EventsListPage(props){
 

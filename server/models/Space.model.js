@@ -12,7 +12,7 @@ const spaceSchema = new Schema(
     address: {
         street: String,
         stNumber: String,
-        postcode: Number
+        postcode: {type: Number, min: 1000, max: 9999}
     },
     allowedPets: false,
     allowedBeverages: false,
