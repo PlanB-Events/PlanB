@@ -31,8 +31,10 @@ export default function CreateEventCard(){
   
       cloudinaryService.uploadImage(uploadData)
       .then(response => {
+        const key = event.target.name;
+        const value = response.fileUrl;
         setImageUrl(response.fileUrl);
-        setFormData(formData =>({...formData,[event.target.name]: response.fileUrl }));
+        setFormData(formData =>({...formData, [key]: value }));
       })
       .catch(err => console.log("Error while uploading the file: ", err));
     };

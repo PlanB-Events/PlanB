@@ -77,6 +77,18 @@ router.delete("/:id", (req, res, next)=>{
     .catch(error => res.json(error))
 })
 
+router.get("/pastevents", (req, res, next)=>{
+
+    Event.find()
+    .then((events)=> {
+        let currentDate = new Date.toString()
+        const pastEvents = events.map((event)=>{
+            event.date.toString() < currentDate
+        })
+        res.json(pastEvents)
+    })
+    .catch((error)=>res.json(error))
+})
 // POST "/api/events" - Create an event
 router.post("/", (req, res, next)=>{
     const {location, id, title, imageUrl, category, description, date, time, duration} = req.body
@@ -90,16 +102,4 @@ router.post("/", (req, res, next)=>{
     })
 })
 
-router.get("/pastevents", (req, res, next)=>{
-
-    Event.find()
-    .then((events)=> {
-        let currentDate = new Date.toString()
-        const pastEvents = events.map((event)=>{
-            event.date.toString() < currentDate
-        })
-        res.json(pastEvents)
-    })
-    .catch((error)=>res.json(error))
-})
 module.exports = router;
