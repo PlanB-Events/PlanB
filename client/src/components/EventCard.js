@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 export default function EventCard(props){
     
@@ -7,7 +7,9 @@ export default function EventCard(props){
    
     return(
         <div>
+            <Link to={`/events/${_id}`}>
             <h3>{title}</h3>
+            </Link>
 
             <div key={_id} className="eventCard">
                 <img width={400} src={imageUrl} alt="eventImg" />

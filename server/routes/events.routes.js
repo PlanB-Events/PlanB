@@ -38,10 +38,7 @@ router.get("/random", (req, res, next)=>{
 // GET EVENT "/api/events/:id" - Show a specific event with details
 router.get("/:id", (req, res, next)=>{
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-        res.status(400).json({ message: "Specified id is not valid" });
-        return;
-    }
+
 
     Event.findById(req.params.id)
     .then((event)=> res.json(event))
