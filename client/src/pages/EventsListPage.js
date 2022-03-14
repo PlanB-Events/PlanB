@@ -29,7 +29,7 @@ export default function EventsListPage(props){
                 <div style={{ maxWidth: "400px" }} key={event._id} className="card">
                <EventCard event = {event}/>
                 </div>
-                ))}
+            ))}
           </div>
         </div>
         :

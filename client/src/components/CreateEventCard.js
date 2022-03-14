@@ -55,6 +55,13 @@ export default function CreateEventCard(){
         setFormData(formData =>({...formData,[key]: value }));
     }
 
+    function getSelectValues(event) {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      setFormData(formData=>({...formData, [name]:value}));
+  }
+
     return(
         <div className="createEventCard">
         <h3>Create a new event</h3>
@@ -71,12 +78,14 @@ export default function CreateEventCard(){
         />
 
         <label> Type of Event:</label>
-        <input
-          type="text"
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-        />
+        <select name="category" onChange={getSelectValues}>
+          <option value="Concert">Concert</option>
+          <option value="Sport">Sport</option>
+          <option value="Cooking">Cooking</option>
+          <option value="Cultural">Cultural</option>
+          <option value="Social">Social</option>
+          <option value="Other">Other</option>
+        </select>
 
         <label>Image:</label>
         <img width={400} src={imageUrl} alt="img-previsualization"/>
@@ -114,6 +123,15 @@ export default function CreateEventCard(){
           value={formData.duration}
           onChange={handleChange}
         />
+        
+        {/* Map sobre los spaces creados
+        <label>Location:</label>
+        <input
+          type="number"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+        /> */}
 
         <button type="submit">Submit</button>
         </form>

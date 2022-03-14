@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const eventSchema = new Schema(
   {
-    producer: { type: Schema.Types.ObjectId, ref: "User", required: true},
+    producer: { type: Schema.Types.ObjectId, ref: "User"},
     title: {type: String, required: true},
     imageUrl: {type: String},
     description: String,
