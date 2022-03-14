@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
+import axios from "axios";
 
 export default function MySpace(){
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
 
     const [imageUrl, setImageUrl] = useState("");
+
+    const [addressText, setAddressText] = useState("");
+    const [apiAddress, setApiAddress] = useState("");
+    const [addressLng, setAddressLng] = useState(0);
+    const [addressLat, setAddressLat] = useState(0);
 
     const [formData, setFormData] = useState({
         id: user._id,
@@ -17,9 +23,8 @@ export default function MySpace(){
         availableHours: [],
         capacity: 2,  
         address: {
-            street:"",
-            stNumber: "",
-            postcode: 1000
+            direction: apiAddress,
+            coordinates: [addressLng, addressLat]
         }, 
         allowedPets: false, 
         allowedBeverages: false,
@@ -75,6 +80,16 @@ export default function MySpace(){
         setFormData(formData=>({...formData, [name]:result}));
     }
 
+    function handleDirectionChange(event){
+        setAddressText(event.target.value);
+        axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${addressText}.json?proximity=-74.70850,40.78375&access_token=${process.env.REACT_APP_MAP_API_TOKEN}`)
+        .then((response)=>{
+            setAddressLng(response.data.features[0].center[0])
+            setAddressLat(response.data.features[0].center[1])
+            setApiAddress(response.data.features[0].place_name)
+        })
+    }
+
     return(
         <div className="createEventCard"v>
             <h3>Create a space</h3>
@@ -116,27 +131,12 @@ export default function MySpace(){
                     onChange={handleChange}
                 />
 
-                <p>Address:</p>
-                <label>Street:</label>
+                <label>Address:</label>
                 <input
                     type="text"
                     name="street"
-                    value={formData.street}
-                    onChange={handleChange}
-                />
-                <label>Street number:</label>
-                <input
-                    type="text"
-                    name="stNumber"
-                    value={formData.stNumber}
-                    onChange={handleChange}
-                />
-                <label>Postcode:</label>
-                <input
-                    type="number"
-                    name="postcode"
-                    value={formData.postcode}
-                    onChange={handleChange}
+                    value={addressText}
+                    onChange={handleDirectionChange}
                 />
 
                 <label>Allowed pets:</label>

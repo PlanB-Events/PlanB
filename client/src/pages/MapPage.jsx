@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import 'mapbox-gl/dist/mapbox-gl.css'
 mapboxgl.accessToken = process.env.REACT_APP_MAP_API_TOKEN;
 
 
@@ -8,9 +9,12 @@ export default function MapPage(){
 
     const mapContainer = useRef(null);
     const map = useRef(null);
+    const elemRef = useRef(null);
     const [lng, setLng] = useState(2.184007);
     const [lat, setLat] = useState(41.390205);
     const [zoom, setZoom] = useState(12);
+
+    
 
     
     useEffect(() => {
@@ -21,6 +25,10 @@ export default function MapPage(){
             center: [lng, lat],
             zoom: zoom
         });
+        
+        const marker = new mapboxgl.Marker({element: elemRef.current})
+        .setLngLat([2.184007, 41.390205])
+        .addTo(map.current)
     });
     
     useEffect(() => {
@@ -31,7 +39,7 @@ export default function MapPage(){
             setZoom(map.current.getZoom().toFixed(2));
         });
     }, []);
-
+    
     
     const [searchText, setSearchText] = useState("");
     
@@ -46,11 +54,9 @@ export default function MapPage(){
             setLng(response.data.features[0].center[0])
             setLat(response.data.features[0].center[1])
             map.current.flyTo({center: [response.data.features[0].center[0], response.data.features[0].center[1]], zoom: 15})
-            console.log(map.current)
-            new mapboxgl.Marker({
-                color: "#FFFFFF",
-                draggable: true
-                }).setLngLat([30.5, 50.5]).addTo(map.current);
+            const marker1 = new mapboxgl.Marker({element: elemRef.current})
+            .setLngLat([response.data.features[0].center[0], response.data.features[0].center[1]])
+            .addTo(map.current)
         })
     }
 
@@ -64,6 +70,7 @@ export default function MapPage(){
             </form>
             <div className="sidebar">Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}</div>
             <div ref={mapContainer} className="map-container" />
+            
         </div>
     )
 }
