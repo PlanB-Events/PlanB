@@ -11,6 +11,10 @@ class EventsService {
         return this.api.post("/events", requestBody).then(res => res.data)
     };
 
+    getSelectedEvents = (category) => {
+        return this.api.get(`/events/list/${category}`).then(response=> response.data)
+      };
+
     getEvent = (id) => {
         return this.api.get(`/events/${id}`).then(response=>response.data)
       };
