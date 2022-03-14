@@ -4,6 +4,7 @@ import { useParams, navigate, useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
 import EventCard from "../components/EventCard";
 import LoadingComponent from "../components/Loading";
+import FilterButton from "../components/FilterButton";
 // import eventsService from "../services/events";
 
 export default function EventsListPage(props){
@@ -21,7 +22,7 @@ export default function EventsListPage(props){
     return(eventsData.length ?
         <div>
             <div className="filter-btn">
-            <button>Choose a date button</button>
+            <FilterButton />
             </div>
         
         <div>

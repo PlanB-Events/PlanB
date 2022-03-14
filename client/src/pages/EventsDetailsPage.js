@@ -20,7 +20,7 @@ export default function EventsDetailsPage(){
             <h3>{title}</h3>
 
             <div key={_id} className="eventDetails">
-                <img src={imageUrl} alt="eventImg" />
+                <img src={imageUrl} width={400} alt="eventImg" />
                 <h3>{category}</h3>
                 <h3>{date}</h3>
                 <h3>{time}</h3>

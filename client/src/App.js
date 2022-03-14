@@ -59,7 +59,7 @@ export default function App() {
         <Route exact path={"/auth"} element={<AuthPage/>} />
         <Route exact path={"/events"} element={<EventsMainPage/>} />
         <Route exact path={"/events/:id"} element={<EventsDetailsPage/>} />
-        <Route exact path={"/events/:category/list"} element={<EventsListPage/>} />
+        <Route exact path={"/events/list/:category"} element={<EventsListPage/>} />
         <Route exact path={"/events/create"} element={<EventsCreatePage/>} />
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
         <Route exact path={"/profile/myspace"} element={<MySpacePage />} />

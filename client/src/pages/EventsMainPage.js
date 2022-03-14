@@ -11,49 +11,49 @@ export default function EventsMainPage(){
 
            <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/all/list`}>
+                <Link to={`/events/list/all`}>
                 <h3>All events</h3>
                 </Link>
             </div>
 
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/concerts/list`}>  
+                <Link to={`/events/list/concerts`}>  
                 <h3>Concerts</h3>
                 </Link>
             </div>
  
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/sport/list`}>
+                <Link to={`/events/list/sport`}>
                  <h3>Sport plans</h3>
                 </Link>
             </div> 
 
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/cooking/list`}>
+                <Link to={`/events/list/cooking`}>
                  <h3>Cooking plans</h3>
                 </Link>
             </div> 
 
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/cultural/list`}>
+                <Link to={`/events/list/cultural`}>
                  <h3>Cultural plans</h3>
                 </Link>
             </div> 
 
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/social/list`}>
+                <Link to={`/events/list/social`}>
                  <h3>Social plans</h3>
                 </Link>
             </div> 
 
             <div>
             <img src="/public/images/spaghetti-1.jpg" alt="" style={{ maxWidth: "400px" }}/>
-                <Link to={`/events/other/list`}>
+                <Link to={`/events/list/other`}>
                  <h3>Other plans</h3>
                 </Link>
             </div> 

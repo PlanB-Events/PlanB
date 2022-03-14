@@ -27,7 +27,7 @@ router.get("/list/:category", (req, res, next)=>{
 // GET "/api/events/random"	- Show a random event with details
 router.get("/random", (req, res, next)=>{
 
-    Event.find()
+    Event.find({"date": {$gte: new Date()}})
     .then((events)=> {
         const randomIndex = Math.floor(Math.random()* events.length)
         res.json(events[randomIndex])
