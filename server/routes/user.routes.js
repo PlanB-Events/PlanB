@@ -2,6 +2,7 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 
 const User = require("../models/User.model")
+const Event = require("../models/Event.model")
 
 //GET USER profile -> /api/user/:id -  Retrieves a specific user by id
 router.get("/:id", (req, res, next)=>{
@@ -32,6 +33,29 @@ router.put("/:id", (req, res, next)=>{
     .catch(error => res.json(error))
 })
 
+
+//PUT USER List the Events Joined
+router.put("/:userId/join/:eventId", (req, res)=>{
+    const userId = req.params.userId
+    const eventId = req.params.eventId
+    Event.findById(eventId)
+    .then((findedEvent)=>{
+        const findedEventId = findedEvent._id
+        User.findByIdAndUpdate(userId, {$push: {joinedEvents: findedEventId}})
+        .then((updatedUser)=>{res.json(updatedUser)})
+    })
+})
+
+router.put("/:userId/leave/:eventId", (req, res)=>{
+    const userId = req.params.userId
+    const eventId = req.params.eventId
+    Event.findById(eventId)
+    .then((findedEvent)=>{
+        const findedEventId = findedEvent._id
+        User.findByIdAndUpdate(userId, {$pull: {joinedEvents: findedEventId}})
+        .then((updatedUser)=>{res.json(updatedUser)})
+    })
+})
 
 //DELETE USER profile -> /api/user/:id -  Delete a specific user by id
 

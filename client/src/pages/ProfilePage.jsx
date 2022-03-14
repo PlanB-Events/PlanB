@@ -7,17 +7,27 @@ import EditProfileCard from "../components/EditProfileCard"
 export default function ProfilePage(){
     const {id} = useParams("id")
     const [currentUser, setCurrentUser] = useState({})
+    const [isRun, setIsRun] = useState(false);
+
     useEffect(()=>{
         userService.getUser(id)
         .then(foundUser =>{
             setCurrentUser(foundUser)
         })
-    }, [id])
+    }, [id, isRun])
 
     const [editTab, setEditTab] = useState(false)
 
     function toggleEdit(){
         setEditTab(!editTab)
+    }
+
+    function handleLeaveEvent(id){
+        userService.leaveEvent(currentUser._id, id)
+        .then((updatedUser)=>{
+            setIsRun(!isRun)
+            setCurrentUser(updatedUser)
+        })
     }
     
 
@@ -31,10 +41,17 @@ export default function ProfilePage(){
             <p>{currentUser.email}</p>
             <h4>Events joined:</h4>
             <ul>
-            {currentUser.joinedEvents.map((element) => { 
-                return (
-                    <li>{element.title}</li>
-                )})
+            {currentUser.joinedEvents.length ?
+                currentUser.joinedEvents.map((event) => { 
+                    return (
+                        <li key={event._id}>
+                            <h6>{event.title}</h6>
+                            <button onClick={()=>{handleLeaveEvent(event._id)}}>Leave Event</button>
+                        </li>
+                    )
+                })
+                :
+                <li>You didn't joined any event right now</li>
             }
             </ul>
             
