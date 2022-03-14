@@ -57,7 +57,6 @@ export default function MySpace(){
         const name = event.target.name
         const value = event.target.value
         setFormData(formData=>({...formData, [name]:value}))
-
     }
 
     function getSelectValues(event) {
@@ -73,11 +72,8 @@ export default function MySpace(){
             result.push(opt.value);
           }
         }
-        
-        console.log("RESULT SELECTOR: ", result)
         setFormData(formData=>({...formData, [name]:result}));
     }
-    
 
     return(
         <div className="createEventCard"v>

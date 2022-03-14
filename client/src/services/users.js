@@ -14,6 +14,15 @@ class UserService {
     getUser = (id) =>{
         return this.api.get(`/user/${id}`).then(response=> response.data)
     }
+
+    joinEvent = (userId, eventId)=>{
+      return this.api.put(`/user/${userId}/join/${eventId}`).then(response=>response.data)
+    }
+
+    leaveEvent = (userId, eventId)=>{
+      return this.api.put(`/user/${userId}/leave/${eventId}`).then(response=>response.data)
+    }
+    
 }
 
 const userService = new UserService();
