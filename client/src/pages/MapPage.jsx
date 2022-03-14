@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import 'mapbox-gl/dist/mapbox-gl.css'
+import 'mapbox-gl/dist/mapbox-gl.css';
+import eventsService from "../services/events";
 mapboxgl.accessToken = process.env.REACT_APP_MAP_API_TOKEN;
 
 
@@ -25,10 +26,22 @@ export default function MapPage(){
             center: [lng, lat],
             zoom: zoom
         });
+
+        eventsService.getAllEvents()
+        .then((events)=>{
+            events.forEach((event)=>{
+                if(event.location !== null){
+                const marker = new mapboxgl.Marker({element: elemRef.current})
+                .setLngLat([event.location.address.coordinates[0], event.location.address.coordinates[1]])
+                .setPopup(new mapboxgl.Popup().setHTML(`
+                <h5>${event.title}</h5>
+                <p>${event.location.address.direction}</p>
+                `))
+                .addTo(map.current)
+                }
+            })
+        })
         
-        const marker = new mapboxgl.Marker({element: elemRef.current})
-        .setLngLat([2.184007, 41.390205])
-        .addTo(map.current)
     });
     
     useEffect(() => {

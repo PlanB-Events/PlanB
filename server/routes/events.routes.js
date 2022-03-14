@@ -3,7 +3,6 @@ const router = require("express").Router();
 const Event = require("../models/Event.model");
 const User = require("../models/User.model");
 
-// GET "/api/events/pastevents" 
 
 
 // GET "/api/events/futureevents"
@@ -86,6 +85,14 @@ router.get("/pastevents", (req, res, next)=>{
     })
     .catch((error)=>res.json(error))
 })
+
+
+router.get("/", (req, res)=>{
+    Event.find({"date": {$gte: new Date()}})
+    .populate("location")
+    .then((events)=>{res.json(events)})
+})
+
 // POST "/api/events" - Create an event
 router.post("/", (req, res, next)=>{
     const {location, id, title, imageUrl, category, description, date, time, duration} = req.body

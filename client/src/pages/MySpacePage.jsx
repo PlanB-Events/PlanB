@@ -81,12 +81,17 @@ export default function MySpace(){
     }
 
     function handleDirectionChange(event){
+        const name = event.target.name;
         setAddressText(event.target.value);
         axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${addressText}.json?proximity=-74.70850,40.78375&access_token=${process.env.REACT_APP_MAP_API_TOKEN}`)
         .then((response)=>{
             setAddressLng(response.data.features[0].center[0])
             setAddressLat(response.data.features[0].center[1])
             setApiAddress(response.data.features[0].place_name)
+            setFormData({...formData, [name]:{
+                direction: response.data.features[0].place_name,
+                coordinates: [response.data.features[0].center[0], response.data.features[0].center[1]]
+            }})
         })
     }
 
@@ -134,7 +139,7 @@ export default function MySpace(){
                 <label>Address:</label>
                 <input
                     type="text"
-                    name="street"
+                    name="address"
                     value={addressText}
                     onChange={handleDirectionChange}
                 />

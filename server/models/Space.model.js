@@ -11,7 +11,7 @@ const spaceSchema = new Schema(
     capacity: {type: Number, required: true},
     address: {
         direction: String,
-        coordinates: [{type: Number, max: 2}]
+        coordinates: [{type: Number}]
     },
     allowedPets: false,
     allowedBeverages: false,

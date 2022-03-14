@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
+import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
 
@@ -9,6 +10,12 @@ export default function CreateEventCard(){
     
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
+    const [allSpaces, setAllSpaces] = useState([])
+
+    useEffect(()=>{
+      spacesService.getAllSpaces()
+      .then((spaces)=>{setAllSpaces(spaces)})
+    }, [])
 
     const [imageUrl, setImageUrl] = useState("");
 
@@ -51,7 +58,7 @@ export default function CreateEventCard(){
 
     function handleChange(event){
         const key = event.target.name;
-        const value = event.target.value;
+        const value = key === "location" ? event.target.options[event.target.selectedIndex].value : event.target.value;
         setFormData(formData =>({...formData,[key]: value }));
     }
 
@@ -124,14 +131,13 @@ export default function CreateEventCard(){
           onChange={handleChange}
         />
         
-        {/* Map sobre los spaces creados
+        
         <label>Location:</label>
-        <input
-          type="number"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        /> */}
+        <select name="location" onChange={handleChange}>
+          {allSpaces.map((space)=>{
+            return(<option key={space._id} value={space._id}>{space.name}</option>)
+          })}
+        </select>
 
         <button type="submit">Submit</button>
         </form>
