@@ -10,15 +10,16 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
 import logo from "./assets/icon2.png";
 import { AuthContext } from "./context/auth.context.js";
-import { useContext } from "react";
-import LoadingComponent from "./components/Loading"
+import { useContext, useEffect, useRef, useState } from "react";
+import LoadingComponent from "./components/Loading";
 import MapPage from "./pages/MapPage.jsx";
-import EventsDetailsPage from "./pages/EventsDetailsPage"
-import MySpacePage from "./pages/MySpacePage"
-
-
+import EventsDetailsPage from "./pages/EventsDetailsPage";
+import MySpacePage from "./pages/MySpacePage";
 
 export default function App() {
+
+
+
   const navigate= useNavigate()
 
   const {isLoggedIn, logOutUser, user, isLoading} = useContext(AuthContext);
@@ -45,7 +46,7 @@ export default function App() {
             </Navbar.Brand>
           </Link>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/auth">Map</Nav.Link>
+            <Nav.Link as={Link} to="/events/map">Map</Nav.Link>
             <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
