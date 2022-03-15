@@ -79,7 +79,7 @@ export default function MapPage(){
         <div>
             <form onSubmit={handleSubmit}>
                 <input name="searchText" value={searchText} onChange={handleChange}/>
-                <button type="submit">Search</button>
+                <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Search</button>
             </form>
             <div className="sidebar">Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}</div>
             <div ref={mapContainer} className="map-container" />

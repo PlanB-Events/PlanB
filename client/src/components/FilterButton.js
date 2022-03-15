@@ -34,7 +34,7 @@ export default function FilterButton(props){
             <option value="other">Other</option>
         </select>
         
-        <button type="submit">Filter</button>
+        <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Filter</button>
         </form>
       </div>
     )
