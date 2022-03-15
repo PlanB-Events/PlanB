@@ -1,41 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import eventsService from "../services/events";
 
 export default function FilterButton(props){
 
-    const [selectedCategory, setSelectedCategory] = useState("");
+    const defaultDate = new Date();
 
-    function handleChange(event){
-        setSelectedCategory(event.target.value)
-    }
+    const [filteredEvents, setFilteredEvents] = useState(props.eventsData)
 
-    function handleSubmit(event){
-        event.preventDefault();
-        eventsService.getSelectedEvents(selectedCategory)
-        .then((events)=>{props.setEventsData(events)})
-        .catch((err)=>console.log(err))
+    function filterEvents(event){
+        console.log("PROPSDATA", props.eventsData)
+        const copiedArr = filteredEvents.map(plan=>plan)
+        const filterArr = copiedArr.filter((plan)=>{
+            // console.log("PLAN", plan)
+            // console.log("FIRSTPART", plan.date.toString().slice(0, 10))
+            // console.log("SECONDPART", event.target.value)
+           // return plan.date.toString().slice(0, 10) === event.target.value
+           console.log("hola");
+           return plan
+        })
+        console.log("FILTEREDARR", filterArr)
+        setFilteredEvents(filterArr)
+        props.setEventsData(filterArr)
     }
 
     return(
         <div className="filter-btn">
-        
-        <form onSubmit={handleSubmit}>
-      
-        <label>Type of event:</label>
-        <select name='category' onChange={handleChange}>
-            <option style={{display: "none"}} selected disabled value="">Choose category</option>
-            <option value="all">See all categories</option>
-            <option value="concert">Concert</option>
-            <option value="cooking">Cooking</option>
-            <option value="cultural">Cultural</option>
-            <option value="cocial">Social</option>
-            <option value="sport">Sport</option>
-            <option value="other">Other</option>
-        </select>
-        
-        <button type="submit">Filter</button>
-        </form>
+
+            <label>Select a date:</label>
+            <input name="date" value={defaultDate} type="date" min={new Date().toISOString().slice(0, 10)} onChange={filterEvents}/>
+
       </div>
     )
 }

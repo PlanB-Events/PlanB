@@ -117,6 +117,7 @@ export default function MySpace(){
                 <input
                     type="date"
                     name="availableDates"
+                    min={new Date().toISOString().slice(0, 10)}
                     value={formData.availableDates}
                     onChange={handleChange}
                 />

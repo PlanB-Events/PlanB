@@ -93,7 +93,9 @@ router.get("/pastevents", (req, res, next)=>{
 
 
 router.get("/", (req, res)=>{
-    Event.find({"date": {$gte: new Date()}})
+    const date = new Date()
+    date.setHours(0, 0, 0, 0)
+    Event.find({"date": {$gte: date}})
     .populate("space")
     .then((events)=>{res.json(events)})
 })

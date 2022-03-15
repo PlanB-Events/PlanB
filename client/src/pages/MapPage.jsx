@@ -30,14 +30,17 @@ export default function MapPage(){
         eventsService.getAllEvents()
         .then((events)=>{
             events.forEach((event)=>{
+                const today = new Date();
                 if(event.space !== null){
-                const marker = new mapboxgl.Marker({element: elemRef.current})
-                .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
-                .setPopup(new mapboxgl.Popup().setHTML(`
-                <h5>${event.title}</h5>
-                <p>${event.space.address.direction}</p>
-                `))
-                .addTo(map.current)
+                    if(event.date.slice(0, 10) === today.toISOString().slice(0, 10)){
+                        const marker = new mapboxgl.Marker({element: elemRef.current})
+                        .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
+                        .setPopup(new mapboxgl.Popup().setHTML(`
+                        <h5>${event.title}</h5>
+                        <p>${event.space.address.direction}</p>
+                        `))
+                        .addTo(map.current)
+                    }
                 }
             })
         })
@@ -53,37 +56,12 @@ export default function MapPage(){
         });
     }, []);
     
-    
-    const [searchText, setSearchText] = useState("");
-    
-    function handleChange(event){
-        setSearchText(event.target.value);
-    }
-    
-    function handleSubmit(event){
-        event.preventDefault();
-        axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${searchText}.json?proximity=-74.70850,40.78375&access_token=${process.env.REACT_APP_MAP_API_TOKEN}`)
-        .then((response)=>{
-            setLng(response.data.features[0].center[0])
-            setLat(response.data.features[0].center[1])
-            map.current.flyTo({center: [response.data.features[0].center[0], response.data.features[0].center[1]], zoom: 15})
-            const marker1 = new mapboxgl.Marker({element: elemRef.current})
-            .setLngLat([response.data.features[0].center[0], response.data.features[0].center[1]])
-            .addTo(map.current)
-        })
-    }
-
-    
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <input name="searchText" value={searchText} onChange={handleChange}/>
-                <button type="submit">Search</button>
-            </form>
+            <h1>Today's Events</h1>
             <div className="sidebar">Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}</div>
             <div ref={mapContainer} className="map-container" />
-            
         </div>
     )
 }
