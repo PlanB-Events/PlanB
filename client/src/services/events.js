@@ -23,6 +23,10 @@ class EventsService {
         return this.api.get("/events").then(response=>response.data)
     };
 
+    getRandomEvent = () => {
+          return this.api.get(`/events/random`).then(response=>response.data)
+  };
+
 }
 
 const eventsService = new EventsService();

@@ -4,6 +4,7 @@ import { useParams, navigate, useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
 import EventCard from "../components/EventCard";
 import LoadingComponent from "../components/Loading";
+import FilterButton from "../components/FilterButton";
 // import eventsService from "../services/events";
 
 export default function EventsListPage(props){
@@ -18,21 +19,23 @@ export default function EventsListPage(props){
     }, [category])
 
 
-    return(eventsData.length ?
+    return(
         <div>
             <div className="filter-btn">
-            <button>Choose a date button</button>
+            <FilterButton setEventsData={setEventsData} />
             </div>
         
-        <div>
-            {eventsData.map((event) => (
-                <div style={{ maxWidth: "400px" }} key={event._id} className="card">
-               <EventCard event = {event}/>
-                </div>
-            ))}
-          </div>
+            {eventsData.length ?
+            <div>
+                {eventsData.map((event) => (
+                    <div style={{ maxWidth: "400px" }} key={event._id} className="card">
+                <EventCard event = {event}/>
+                    </div>
+                ))}
+            </div>
+            :
+            <p>No events found</p>
+            }
         </div>
-        :
-        <div>No events found</div>
     )
 }
