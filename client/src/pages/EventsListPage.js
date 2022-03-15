@@ -19,26 +19,23 @@ export default function EventsListPage(props){
     }, [category])
 
 
-    return(eventsData.length ?
+    return(
         <div>
             <div className="filter-btn">
             <FilterButton setEventsData={setEventsData} />
             </div>
         
-        <div>
-            {eventsData.map((event) => (
-                <div style={{ maxWidth: "400px" }} key={event._id} className="card">
-               <EventCard event = {event}/>
-                </div>
-            ))}
-          </div>
-        </div>
-        :
-        <div>
-            <div className="filter-btn">
-            <FilterButton setEventsData={setEventsData} />
+            {eventsData.length ?
+            <div>
+                {eventsData.map((event) => (
+                    <div style={{ maxWidth: "400px" }} key={event._id} className="card">
+                <EventCard event = {event}/>
+                    </div>
+                ))}
             </div>
+            :
             <p>No events found</p>
+            }
         </div>
     )
 }
