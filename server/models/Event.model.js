@@ -14,7 +14,7 @@ const eventSchema = new Schema(
     date: {type: Date, required: true},
     time: {type: String, required: true},
     duration: {type: Number, default: 1},
-    space: {type: Schema.Types.ObjectId, ref: 'Space'},
+    space: {type: Schema.Types.ObjectId, ref: 'Space'}
   },
   {
     timestamps: true,

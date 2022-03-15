@@ -40,8 +40,13 @@ router.post("/", (req, res, next)=>{
 
     User.findById(id)
     .then((user)=>{
-        Space.create({$set: {owner: user._id}, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess})
-        .then((createdSpace) => res.json(createdSpace))
+        Space.create({owner: user._id, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess})
+        .then((createdSpace) =>{
+            const spaceId = createdSpace._id
+            User.findByIdAndUpdate(user._id, {$set: {space: spaceId}})
+            .then((_)=>{
+                res.json(createdSpace)})
+            })
         .catch((error)=> res.json(error))
     })
 })
