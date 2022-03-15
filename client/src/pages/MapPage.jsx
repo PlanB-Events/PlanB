@@ -30,12 +30,12 @@ export default function MapPage(){
         eventsService.getAllEvents()
         .then((events)=>{
             events.forEach((event)=>{
-                if(event.location !== null){
+                if(event.space !== null){
                 const marker = new mapboxgl.Marker({element: elemRef.current})
-                .setLngLat([event.location.address.coordinates[0], event.location.address.coordinates[1]])
+                .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
                 .setPopup(new mapboxgl.Popup().setHTML(`
                 <h5>${event.title}</h5>
-                <p>${event.location.address.direction}</p>
+                <p>${event.space.address.direction}</p>
                 `))
                 .addTo(map.current)
                 }

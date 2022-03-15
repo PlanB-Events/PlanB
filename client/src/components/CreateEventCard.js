@@ -28,7 +28,7 @@ export default function CreateEventCard(){
       time: "",
       description: "",
       duration: 1,
-      location: null
+      space: null
     });
 
     const handleFileUpload = (event) => {
@@ -58,7 +58,7 @@ export default function CreateEventCard(){
 
     function handleChange(event){
         const key = event.target.name;
-        const value = key === "location" ? event.target.options[event.target.selectedIndex].value : event.target.value;
+        const value = key === "space" ? event.target.options[event.target.selectedIndex].value : event.target.value;
         setFormData(formData =>({...formData,[key]: value }));
     }
 
@@ -85,7 +85,8 @@ export default function CreateEventCard(){
         />
 
         <label> Type of Event:</label>
-        <select name="category" onChange={getSelectValues}>
+        <select name="category" onChange={getSelectValues} required>
+          <option style={{display: "none"}} selected disabled value="">Select Category</option>
           <option value="Concert">Concert</option>
           <option value="Sport">Sport</option>
           <option value="Cooking">Cooking</option>
@@ -132,8 +133,9 @@ export default function CreateEventCard(){
         />
         
         
-        <label>Location:</label>
-        <select name="location" onChange={handleChange}>
+        <label>Space:</label>
+        <select name="space" onChange={handleChange}>
+          <option style={{display: "none"}} selected disabled value="">Select a Space</option>
           {allSpaces.map((space)=>{
             return(<option key={space._id} value={space._id}>{space.name}</option>)
           })}
