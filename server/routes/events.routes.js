@@ -3,7 +3,6 @@ const router = require("express").Router();
 const Event = require("../models/Event.model");
 const User = require("../models/User.model");
 
-// GET "/api/events/pastevents" 
 
 
 // GET "/api/events/futureevents"
@@ -12,6 +11,7 @@ router.get("/list/:category", (req, res, next)=>{
     let currentDate = new Date;
 
     Event.find({"date": {$gte: new Date()}})
+    .populate("space")
     .then((events)=> {
         const selectedEvents =  events.map((event)=>{
             if(req.params.category === "all") return event
@@ -27,7 +27,8 @@ router.get("/list/:category", (req, res, next)=>{
 // GET "/api/events/random"	- Show a random event with details
 router.get("/random", (req, res, next)=>{
 
-    Event.find({"date": {$gte: new Date()}})
+    Event.find()
+    .populate("space")
     .then((events)=> {
         const randomIndex = Math.floor(Math.random()* events.length)
         res.json(events[randomIndex])
@@ -41,6 +42,7 @@ router.get("/:id", (req, res, next)=>{
 
 
     Event.findById(req.params.id)
+    .populate("space")
     .then((event)=> res.json(event))
     .catch((error)=>res.json(error))
 })
@@ -54,6 +56,7 @@ router.put("/:id", (req, res, next)=>{
     Event.findByIdAndUpdate(
         req.params.id,
         req.body, {new:true})
+    .populate("space")
     .then((editedEvent)=>res.status(200).json(editedEvent))
     .catch(error => res.json(error))
 })
@@ -77,6 +80,7 @@ router.delete("/:id", (req, res, next)=>{
 router.get("/pastevents", (req, res, next)=>{
 
     Event.find()
+    .populate("space")
     .then((events)=> {
         let currentDate = new Date.toString()
         const pastEvents = events.map((event)=>{
@@ -86,13 +90,21 @@ router.get("/pastevents", (req, res, next)=>{
     })
     .catch((error)=>res.json(error))
 })
+
+
+router.get("/", (req, res)=>{
+    Event.find({"date": {$gte: new Date()}})
+    .populate("space")
+    .then((events)=>{res.json(events)})
+})
+
 // POST "/api/events" - Create an event
 router.post("/", (req, res, next)=>{
-    const {location, id, title, imageUrl, category, description, date, time, duration} = req.body
+    const {space, id, title, imageUrl, category, description, date, time, duration} = req.body
 
     User.findById(id)
     .then((user)=>{
-        Event.create({location, $set: {producer: user._id}, title, imageUrl, category, description, date, time, duration})
+        Event.create({space, $set: {producer: user._id}, title, imageUrl, category, description, date, time, duration})
         .then((createdEvent) => res.json(createdEvent))
         .catch((error)=> res.json(error))
         

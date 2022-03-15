@@ -10,9 +10,8 @@ const spaceSchema = new Schema(
     availableHours: [{type: String, min: 1, required: true}],
     capacity: {type: Number, required: true},
     address: {
-        street: String,
-        stNumber: String,
-        postcode: {type: Number, min: 1000, max: 9999}
+        direction: String,
+        coordinates: [{type: Number}]
     },
     allowedPets: false,
     allowedBeverages: false,
