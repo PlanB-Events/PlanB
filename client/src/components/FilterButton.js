@@ -2,16 +2,21 @@ import { useState } from "react";
 import { useContext } from "react";
 import eventsService from "../services/events";
 
-export default function FilterButton(){
+export default function FilterButton({events}){
 
     const [formData, setFormData] = useState([]);
+    const [category, setCategory] = useState("");
+
 
     function handleSubmit(event){
         eventsService
-        .getSelectedEvents("category")
-        .then((response) =>{setFormData(response.data)});
+        .getSelectedEvents(category)
+        .then((response) => events = response.data);
     }
 
+    function handleCategory(e){
+        setCategory(e.target.value);
+    }
 
     return(
         <div className="filter-btn">
@@ -19,7 +24,7 @@ export default function FilterButton(){
         <form onSubmit={handleSubmit}>
       
         <label>Type of event:</label>
-        <select>
+        <select name='category' onChange={handleCategory}>
             <option value="Concert">Concert</option>
             <option value="Cooking">Cooking</option>
             <option value="Cultural">Cultural</option>

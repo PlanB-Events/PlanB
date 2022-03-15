@@ -22,7 +22,7 @@ export default function EventsListPage(props){
     return(eventsData.length ?
         <div>
             <div className="filter-btn">
-            <FilterButton />
+            <FilterButton events={eventsData} />
             </div>
         
         <div>
