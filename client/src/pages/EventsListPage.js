@@ -26,7 +26,7 @@ export default function EventsListPage(props){
             </div>
         
             {eventsData.length ?
-            <div>
+            <div className="card align-items-center">
                 {eventsData.map((event) => (
                     <div style={{ maxWidth: "400px" }} key={event._id} className="card">
                 <EventCard event = {event}/>
