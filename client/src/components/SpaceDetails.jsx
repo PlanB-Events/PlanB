@@ -5,20 +5,29 @@ import beveragesTrueLogo from "../assets/byob.svg";
 import covidTrueLogo from "../assets/virus-test-tube-icon-black-green.svg";
 import wheelchairTrueLogo from "../assets/wheelchair.svg";
 import LoadingComponent from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 export default function SpaceDetails(props){
 
     const [currentSpace, setCurrentSpace] = useState({})
+    const navigate= useNavigate()
 
     useEffect(()=>{
         spacesService.getSpace(props.spaceId)
         .then((space)=>{setCurrentSpace(space)})
     }, [props.spaceId])
 
+    function deleteSpace(){
+        spacesService.deleteSpace(currentSpace._id, currentSpace.owner)
+        .then((_)=>{
+            navigate(`/profile/${currentSpace.owner}`)
+        })
+    }
+
 
     return(currentSpace._id ?
         <div className="createEventCard">
-            <h1>{currentSpace._name}</h1>
+            <h1>{currentSpace.name}</h1>
             <img src={currentSpace.imageUrl} alt="Space_Img"/>
             <p>{currentSpace.description}</p>
             <h3>Available Hours</h3>
@@ -38,6 +47,8 @@ export default function SpaceDetails(props){
             {currentSpace.allowedBeverages && <img src={beveragesTrueLogo} alt="features"/>}
             {currentSpace.covidTest && <img src={covidTrueLogo} alt="features"/>}
             {currentSpace.wheelchairAccess && <img src={wheelchairTrueLogo} alt="features"/>}
+
+            <button onClick={deleteSpace}>Delete the space</button>
 
         </div>
         :

@@ -20,6 +20,10 @@ class SpacesService {
       return this.api.get(`/spaces/${id}`).then(response=>response.data)
     }
 
+    deleteSpace = (spaceId, ownerId) => {
+      return this.api.delete(`/spaces/${spaceId}`, { data: {ownerId} }).then(response=>response.data)
+    }
+
 }
 
 const spacesService = new SpacesService();

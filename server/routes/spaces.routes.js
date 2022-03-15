@@ -59,13 +59,16 @@ router.delete("/:id", (req, res, next)=>{
         return;
     }
 
-    Space.findByIdAndRemove(req.params.id)
-    .then(() =>
-      res.json({
-        message: `User with ${req.params.id} is removed successfully.`,
-      })
-    )
-    .catch(error => res.json(error))
+    User.findByIdAndUpdate(req.body.ownerId, {$unset: {space: req.params.id}})
+    .then((_)=>{
+        Space.findByIdAndRemove(req.params.id)
+        .then(() =>
+          res.json({
+            message: `Space with ${req.params.id} is removed successfully.`,
+          })
+        )
+        .catch(error => res.json(error))
+    })
 })
 
 
