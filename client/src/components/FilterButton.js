@@ -2,20 +2,19 @@ import { useState } from "react";
 import { useContext } from "react";
 import eventsService from "../services/events";
 
-export default function FilterButton({events}){
+export default function FilterButton(props){
 
-    const [formData, setFormData] = useState([]);
-    const [category, setCategory] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("");
 
-
-    function handleSubmit(event){
-        eventsService
-        .getSelectedEvents(category)
-        .then((response) => events = response.data);
+    function handleChange(event){
+        setSelectedCategory(event.target.value)
     }
 
-    function handleCategory(e){
-        setCategory(e.target.value);
+    function handleSubmit(event){
+        event.preventDefault();
+        eventsService.getSelectedEvents(selectedCategory)
+        .then((events)=>{props.setEventsData(events)})
+        .catch((err)=>console.log(err))
     }
 
     return(
@@ -24,13 +23,15 @@ export default function FilterButton({events}){
         <form onSubmit={handleSubmit}>
       
         <label>Type of event:</label>
-        <select name='category' onChange={handleCategory}>
-            <option value="Concert">Concert</option>
-            <option value="Cooking">Cooking</option>
-            <option value="Cultural">Cultural</option>
-            <option value="Social">Social</option>
-            <option value="Sport">Sport</option>
-            <option value="Other">Other</option>
+        <select name='category' onChange={handleChange}>
+            <option style={{display: "none"}} selected disabled value="">Choose category</option>
+            <option value="all">See all categories</option>
+            <option value="concert">Concert</option>
+            <option value="cooking">Cooking</option>
+            <option value="cultural">Cultural</option>
+            <option value="cocial">Social</option>
+            <option value="sport">Sport</option>
+            <option value="other">Other</option>
         </select>
         
         <button type="submit">Filter</button>
