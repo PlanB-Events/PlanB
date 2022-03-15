@@ -52,7 +52,9 @@ export default function ProfilePage() {
             return (
               <li key={event._id}>
                 <h6>{event.title}</h6>
-                <button
+                <button type="button" 
+                className="btn btn-outline-info btn-rounded" 
+                data-mdb-ripple-color="dark"
                   onClick={() => {
                     handleLeaveEvent(event._id);
                   }}
@@ -70,15 +72,22 @@ export default function ProfilePage() {
       <div>
         <Link to="/events/create">
           {" "}
-          <button>Create an Event</button>{" "}
+          <button type="button" 
+          className="btn btn-outline-info btn-rounded" 
+          data-mdb-ripple-color="dark">Create an Event</button>{" "}
         </Link>
 
         <Link to="/profile/myspace">
           {" "}
-          <button>Create a space</button>
+          <button type="button" 
+          className="btn btn-outline-info btn-rounded" 
+          data-mdb-ripple-color="dark">Create a space</button>
         </Link>
 
-        <button onClick={() => toggleEdit()}>Edit profile</button>
+        <button type="button" 
+        className="btn btn-outline-info btn-rounded" 
+        data-mdb-ripple-color="dark" 
+        onClick={() => toggleEdit()}>Edit profile</button>
         {editTab && <EditProfileCard />}
       </div>
     </div>

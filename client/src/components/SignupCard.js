@@ -66,22 +66,6 @@ export default function SignupCard(props){
             </div>
          
 
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        <label>Email:</label>
-        <textarea
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
         <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
      </div>  

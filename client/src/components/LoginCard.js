@@ -75,9 +75,7 @@ export default function LoginCard(){
               </div>
             </div>
          
-
-            <button type="submit" class="btn btn-primary">Log in</button>
-        <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+        <button class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
       </div>
     )
