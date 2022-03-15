@@ -28,9 +28,9 @@ export default function LoginCard(){
     return(
         <div className="SignupCard">
         <h3>Login</h3>
-        <h3>Welcome back, we missed you</h3>
+        <h4>Welcome back, we missed you</h4>
 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
       
         <label>Email:</label>
         <textarea
@@ -48,6 +48,34 @@ export default function LoginCard(){
         />
 
         <button type="submit">Submit</button>
+        </form> */}
+
+        <form onSubmit={handleSubmit}>
+            <div class="form-row">
+              
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email:</label>
+                <input type="email" 
+                    class="form-control" 
+                    id="inputEmail4" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Password:</label>
+                <input type="password" 
+                    class="form-control" 
+                    id="inputPassword4" 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Password"/>
+              </div>
+            </div>
+         
+        <button class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
       </div>
     )

@@ -20,7 +20,7 @@ export default function PastEventsCard(){
       ];
 
     return(
-          <Carousel  style={{width: 400, margin: 0}}>
+          <Carousel  >
           {images.map((image) => {return(
             <Carousel.Item key={images.indexOf(image)}>
                 <img className="d-block w-100" src={image.src} alt="imgSlide" />

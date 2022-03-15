@@ -142,7 +142,7 @@ export default function CreateEventCard(){
           })}
         </select>
 
-        <button type="submit">Submit</button>
+        <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
       </div>
     )

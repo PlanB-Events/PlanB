@@ -28,34 +28,46 @@ export default function SignupCard(props){
     }
 
     return(
-        <div className="SignupCard">
+    <div className="SignupCard">
         <h3>Sign up</h3>
 
-        <form onSubmit={handleSubmit}>
-        <label>Username:</label>
-        <input 
-        type="text" 
-        name="username" 
-        value={formData.username} 
-        onChange={handleChange} />
+       <form onSubmit={handleSubmit}>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputUsername">Username:</label>
+                <input type="text" 
+                    class="form-control" 
+                    id="inputUsername"
+                    name="username" 
+                    value={formData.username} 
+                    onChange={handleChange} 
+                    placeholder="Username"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Email:</label>
+                <input type="email" 
+                    class="form-control" 
+                    id="inputEmail4" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email"/>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Password:</label>
+                <input type="password" 
+                    class="form-control" 
+                    id="inputPassword4" 
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Password"/>
+              </div>
+            </div>
+         
 
-        <label>Email:</label>
-        <textarea
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Submit</button>
+        <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
-      </div>
+     </div>  
     )
 }
