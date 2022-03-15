@@ -22,7 +22,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #444852;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -54,3 +54,44 @@
   margin: 0 auto;
 }
 
+.formContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #4becb1;
+  border-radius: 30px;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-content: center;
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  padding-top: 5px;
+  
+}
+
+.authContainer{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: #f1f1f1;
+  width: 100vw;
+  height: 100vh;
+}
+
+#profileImg{
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
+}

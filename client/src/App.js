@@ -8,7 +8,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import {Link} from "react-router-dom";
-import logo from "./assets/icon2.png";
+import logo from "./assets/user-logo.png";
 import { AuthContext } from "./context/auth.context.js";
 import { useContext, useEffect, useRef, useState } from "react";
 import LoadingComponent from "./components/Loading";
@@ -40,7 +40,7 @@ export default function App() {
       
           <Link style={{textDecoration: 'none'}} to="/">
             <Navbar.Brand>
-              <img src="/icon2.png" width="30" height="27" className="d-inline-block align-top" alt="planb-logo"/>
+              <img src="/PBlogo.png" width="30" height="27" className="d-inline-block align-top" alt="planb-logo"/>
               {" "}
               PlanB - Events
             </Navbar.Brand>
