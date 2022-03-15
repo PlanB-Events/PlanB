@@ -11,11 +11,12 @@ export default function EventCard(props){
     const [currentUser, setCurrentUser] = useState({});
     const [isRun, setIsRun] = useState(false);
 
-
     useEffect(()=>{
-        userService.getUser(user._id)
-        .then((foundUser)=>{setCurrentUser(foundUser)})
-    }, [isRun])
+        if(user._id){
+            userService.getUser(user._id)
+            .then((foundUser)=>{setCurrentUser(foundUser)})
+        }
+    }, [user._id, isRun])
 
    function handleJoinEvent(event){
         userService.joinEvent(currentUser._id, _id)
@@ -30,7 +31,7 @@ export default function EventCard(props){
            setIsRun(!isRun)
            setCurrentUser(updatedUser)})
     }
-    return(currentUser._id ?
+    return(
         <div>
             <Link to={`/events/${_id}`}>
             <h3>{title}</h3>
@@ -41,16 +42,17 @@ export default function EventCard(props){
                 <h3>{category}</h3>
                 <h3>{date}</h3>
                 <h2>{location}</h2>
-                {currentUser.joinedEvents
-                .some((joinedEvent)=> joinedEvent._id === _id)
-                ?
-                <button onClick={handleLeaveEvent}>Leave the event</button>
+                {currentUser._id ?
+                    currentUser.joinedEvents
+                    .some((joinedEvent)=> joinedEvent._id === _id)
+                    ?
+                    <button onClick={handleLeaveEvent}>Leave the event</button>
+                    :
+                    <button onClick={handleJoinEvent}>Join this event!</button>
                 :
-                <button onClick={handleJoinEvent}>Join this event!</button>
+                <p>Log in to join this event!</p>
                 }
             </div>
        </div>
-       :
-       <LoadingComponent/>
     )
 }
