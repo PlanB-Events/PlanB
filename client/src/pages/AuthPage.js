@@ -13,13 +13,17 @@ export default function AuthPage(){
     }
 
     return(
-        <div>
-
+        <div className="authContainer">
+         <div className="formContainer">
+           
+            <div className="btn-container">
             <button onClick={()=>{if(loginTab){toggleTab()}}}> Signup </button> 
             <button  onClick={()=>{if(signupTab){toggleTab()}}}> Login </button> 
+            </div>
+           
             {loginTab && <LoginCard />}
             {signupTab && <SignupCard toggleTab={toggleTab}/>}
-
+          </div>
         </div>
     )
 }
