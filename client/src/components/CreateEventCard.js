@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import eventsService from "../services/events";
+import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
 
@@ -9,6 +10,12 @@ export default function CreateEventCard(){
     
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
+    const [allSpaces, setAllSpaces] = useState([])
+
+    useEffect(()=>{
+      spacesService.getAllSpaces()
+      .then((spaces)=>{setAllSpaces(spaces)})
+    }, [])
 
     const [imageUrl, setImageUrl] = useState("");
 
@@ -21,7 +28,7 @@ export default function CreateEventCard(){
       time: "",
       description: "",
       duration: 1,
-      location: null
+      space: null
     });
 
     const handleFileUpload = (event) => {
@@ -51,7 +58,7 @@ export default function CreateEventCard(){
 
     function handleChange(event){
         const key = event.target.name;
-        const value = event.target.value;
+        const value = key === "space" ? event.target.options[event.target.selectedIndex].value : event.target.value;
         setFormData(formData =>({...formData,[key]: value }));
     }
 
@@ -78,7 +85,8 @@ export default function CreateEventCard(){
         />
 
         <label> Type of Event:</label>
-        <select name="category" onChange={getSelectValues}>
+        <select name="category" onChange={getSelectValues} required>
+          <option style={{display: "none"}} selected disabled value="">Select Category</option>
           <option value="Concert">Concert</option>
           <option value="Sport">Sport</option>
           <option value="Cooking">Cooking</option>
@@ -124,14 +132,14 @@ export default function CreateEventCard(){
           onChange={handleChange}
         />
         
-        {/* Map sobre los spaces creados
-        <label>Location:</label>
-        <input
-          type="number"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-        /> */}
+        
+        <label>Space:</label>
+        <select name="space" onChange={handleChange}>
+          <option style={{display: "none"}} selected disabled value="">Select a Space</option>
+          {allSpaces.map((space)=>{
+            return(<option key={space._id} value={space._id}>{space.name}</option>)
+          })}
+        </select>
 
         <button type="submit">Submit</button>
         </form>

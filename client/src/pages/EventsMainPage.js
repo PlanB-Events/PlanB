@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import eventsService from "../services/events";
+import { Card } from 'react-bootstrap';
+
 
 export default function EventsMainPage(){
 
