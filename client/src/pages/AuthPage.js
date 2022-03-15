@@ -15,8 +15,8 @@ export default function AuthPage(){
     return(
         <div>
 
-            <button onClick={()=>{if(loginTab){toggleTab()}}}> Signup </button> 
-            <button  onClick={()=>{if(signupTab){toggleTab()}}}> Login </button> 
+            <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={()=>{if(loginTab){toggleTab()}}}> Signup </button> 
+            <button  type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={()=>{if(signupTab){toggleTab()}}}> Login </button> 
             {loginTab && <LoginCard />}
             {signupTab && <SignupCard toggleTab={toggleTab}/>}
 
