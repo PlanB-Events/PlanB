@@ -37,10 +37,12 @@ export default function ProfilePage() {
         height="150px"
         width="150px"
       />
-      <h4>Name:</h4>
-      <p>{currentUser.username}</p>
-      <h4>Email:</h4>
-      <p>{currentUser.email}</p>
+      <div>
+        <h4>Name:</h4>
+        <p>{currentUser.username}</p>
+        <h4>Email:</h4>
+        <p>{currentUser.email}</p>
+      </div>
       <h4>Events joined:</h4>
       <ul>
         {currentUser.joinedEvents.length ? (
