@@ -134,7 +134,7 @@ export default function CreateEventCard(){
         
         
         <label>Space:</label>
-        <select name="space" onChange={handleChange}>
+        <select name="space" onChange={handleChange} required>
           <option style={{display: "none"}} selected disabled value="">Select a Space</option>
           {allSpaces.map((space)=>{
             return(<option key={space._id} value={space._id}>{space.name}</option>)
