@@ -56,11 +56,11 @@ export default function ProfilePage(){
             </ul>
             
             
-            <Link to="/events/create"> <button>Create an Event</button> </Link>
+            <Link to="/events/create"> <button className="bn632-hover bn18">Create an Event</button> </Link>
 
-            <Link to="/profile/myspace"> <button>Create a space</button></Link>
+            <Link to="/profile/myspace"> <button className="bn632-hover bn18">Create a space</button></Link>
 
-             <button onClick={()=> toggleEdit()}>Edit profile</button>
+             <button className="bn632-hover bn18" onClick={()=> toggleEdit()}>Edit profile</button>
              {editTab && <EditProfileCard />}
 
         </div>
