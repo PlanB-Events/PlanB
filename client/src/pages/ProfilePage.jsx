@@ -39,7 +39,7 @@ export default function ProfilePage() {
         height="150px"
         width="150px"
       />
-       </div>
+    </div>
       <div className="userData">
         <h4>Name:</h4>
         <p>{currentUser.username}</p>
@@ -97,6 +97,7 @@ export default function ProfilePage() {
         Edit profile
       </button>
       {editTab && <EditProfileCard />}
+    </div>
     </div>
   ) : (
     <LoadingComponent />
