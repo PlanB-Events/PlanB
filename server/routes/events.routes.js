@@ -9,8 +9,9 @@ const User = require("../models/User.model");
 
 router.get("/list/:category", (req, res, next)=>{
     let currentDate = new Date;
+    currentDate.setHours(0, 0, 0, 0)
 
-    Event.find({"date": {$gte: new Date()}})
+    Event.find({"date": {$gte: currentDate}})
     .populate("space")
     .then((events)=> {
         const selectedEvents =  events.map((event)=>{
@@ -63,18 +64,19 @@ router.put("/:id", (req, res, next)=>{
 
 // DELETE "/api/events/:id"	
 router.delete("/:id", (req, res, next)=>{
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-        res.status(400).json({ message: "Specified id is not valid" });
-        return;
-    }
 
-    Event.findByIdAndRemove(req.params.id)
-    .then(() =>
-      res.json({
-        message: `User with ${req.params.id} is removed successfully.`,
-      })
-    )
-    .catch(error => res.json(error))
+    console.log("DATAAA", req.body)
+
+    User.findByIdAndUpdate(req.body.userId, {$pull: {createdEvents: req.params.id}})
+    .then((_)=>{
+        Event.findByIdAndRemove(req.params.id)
+        .then(() =>
+          res.json({
+            message: `User with ${req.params.id} is removed successfully.`,
+          })
+        )
+        .catch(error => res.json(error))
+    })
 })
 
 router.get("/pastevents", (req, res, next)=>{
