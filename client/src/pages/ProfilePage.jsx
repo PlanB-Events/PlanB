@@ -47,7 +47,7 @@ export default function ProfilePage() {
         height="150px"
         width="150px"
       />
-       </div>
+    </div>
       <div className="userData">
         <h4>Name:</h4>
         <p>{currentUser.username}</p>
@@ -63,9 +63,10 @@ export default function ProfilePage() {
             return (
               <li key={event._id}>
                 <h6>{event.title}</h6>
-                <button type="button" 
-                className="btn btn-outline-info btn-rounded" 
-                data-mdb-ripple-color="dark"
+                <button
+                  type="button"
+                  class="btn btn-outline-info btn-rounded"
+                  data-mdb-ripple-color="dark"
                   onClick={() => {
                     handleLeaveEvent(event._id);
                   }}
@@ -108,22 +109,25 @@ export default function ProfilePage() {
         <Link to="/events/create">
           <button type="button" 
           className="btn btn-outline-info btn-rounded" 
-          data-mdb-ripple-color="dark">Create an Event</button>{" "}
+          data-mdb-ripple-color="dark">Create an Event</button>
         </Link>
 
         <Link to={`/profile/${currentUser._id}/myspace`}>
-          {" "}
           <button type="button" 
           className="btn btn-outline-info btn-rounded" 
           data-mdb-ripple-color="dark">Create a space</button>
         </Link>
 
-        <button type="button" 
-        className="btn btn-outline-info btn-rounded" 
-        data-mdb-ripple-color="dark" 
-        onClick={() => toggleEdit()}>Edit profile</button>
-        {editTab && <EditProfileCard />}
-      </div>
+      <button
+        type="button"
+        className="btn btn-outline-info btn-rounded"
+        data-mdb-ripple-color="dark"
+        onClick={() => toggleEdit()}
+      >
+        Edit profile
+      </button>
+      {editTab && <EditProfileCard />}
+    </div>
     </div>
   ) : (
     <LoadingComponent />

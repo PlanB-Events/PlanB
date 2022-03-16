@@ -65,7 +65,7 @@ export default function EditProfile(){
             <img width={400} src={imageUrl} alt="img-previsualization"/>
             <input name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
 
-            <button class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+            <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
             </form>
 
         </div>
