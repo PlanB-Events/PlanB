@@ -49,21 +49,29 @@ export default function EditProfile(){
 
 
     return(
-        <div className="createEventCard">
+        <div className="formContainer">
         <h3>Edit your profile</h3>
-            <form onSubmit={handleSubmit}>
 
-            <label>Name:</label>
+          <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">Name:</label>
             <input
             type="text"
             name="username"
             value={formData.username}
             onChange={handleChange}
+            className="form-control"
             />
+          </div>
 
-            <label>Image:</label>
-            <img width={400} src={imageUrl} alt="img-previsualization"/>
-            <input name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
+          <div className="mb-3">
+            <label className="form-label">Image:</label>
+            <img width={400} src={imageUrl} alt=""/>
+            <input className="form-control"
+          id="formFile" name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
+          </div>
+
+
 
             <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
             </form>
