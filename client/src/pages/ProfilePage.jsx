@@ -126,7 +126,7 @@ export default function ProfilePage() {
       >
         Edit profile
       </button>
-      {editTab && <EditProfileCard />}
+      {editTab && <EditProfileCard currentUser={currentUser}/>}
     </div>
     </div>
   ) : (

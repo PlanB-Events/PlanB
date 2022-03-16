@@ -15,6 +15,7 @@ import LoadingComponent from "./components/Loading";
 import MapPage from "./pages/MapPage.jsx";
 import EventsDetailsPage from "./pages/EventsDetailsPage";
 import MySpacePage from "./pages/MySpacePage";
+import userService from "./services/users.js";
 
 export default function App() {
 
@@ -24,6 +25,14 @@ export default function App() {
 
   const {isLoggedIn, logOutUser, user, isLoading} = useContext(AuthContext);
   
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(()=>{
+    userService.getUser(user._id)
+    .then((foundUser)=>{
+      setCurrentUser(foundUser)
+    })
+  }, [user._id])
 
   function handleLogOut(){
     logOutUser();
@@ -47,7 +56,7 @@ export default function App() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/events/map">Map</Nav.Link>
             <Nav.Link as={Link} to="/">Surprise me!</Nav.Link>
-            <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
+            <NavDropdown title={isLoggedIn ? <img src={currentUser.imageUrl} style={{ width: 30, height: 30, borderRadius: 50}} alt="dropdown-logo"/>  : <img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as={Link} to={`/profile/${user._id}`}>Profile</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{handleLogOut()}}>Logout</NavDropdown.Item>}
