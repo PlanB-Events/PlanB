@@ -89,7 +89,7 @@ export default function EventsDetailsPage() {
             }
 
 
-            {backpage && <Link to={`${backpage}`}>Go back to map</Link>}
+            {backpage && <Link type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" to={`${backpage}`}>Go back to map</Link>}
             </div>
         </div>
         </div>

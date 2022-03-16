@@ -39,7 +39,7 @@ export default function ProfilePage() {
   return currentUser._id ? (
     <div className="containerDiv">
       <div className="profile-header">
-        <h1>This is Profile page</h1>
+        <h1>{currentUser.username}'s profile</h1>
      
       <img id="profileImg"
         src={currentUser.imageUrl}
@@ -48,6 +48,7 @@ export default function ProfilePage() {
         width="150px"
       />
     </div>
+    {editTab && <EditProfileCard />}
       <div className="userData">
         <h4>Name:</h4>
         <p>{currentUser.username}</p>
@@ -57,12 +58,12 @@ export default function ProfilePage() {
 
       <div className="eventsData">
       <h4>Events joined:</h4>
-      <ul>
+      <div>
         {currentUser.joinedEvents.length ? (
           currentUser.joinedEvents.map((event) => {
             return (
-              <li key={event._id}>
-                <h6>{event.title}</h6>
+              <div key={event._id}>
+                <li>{event.title}</li>
                 <button
                   type="button"
                   class="btn btn-outline-info btn-rounded"
@@ -73,20 +74,20 @@ export default function ProfilePage() {
                 >
                   Leave Event
                 </button>
-              </li>
+              </div>
             );
           })
         ) : (
           <li>You didn't joined any event right now</li>
         )}
-      </ul>
+      </div>
       <h4>Created Events:</h4>
-      <ul>
+      <div>
         {currentUser.createdEvents.length ? (
           currentUser.createdEvents.map((event) => {
             return (
-              <li key={event._id}>
-                <h6>{event.title}</h6>
+              <div key={event._id}>
+                <li>{event.title}</li>
                 <button type="button" 
                 className="btn btn-outline-info btn-rounded" 
                 data-mdb-ripple-color="dark"
@@ -96,13 +97,13 @@ export default function ProfilePage() {
                 >
                   Delete Event
                 </button>
-              </li>
+              </div>
             );
           })
         ) : (
           <li>You didn't created any event yet</li>
         )}
-      </ul>
+      </div>
       </div>
 
       <div className="profile-btns">
@@ -115,7 +116,7 @@ export default function ProfilePage() {
         <Link to={`/profile/${currentUser._id}/myspace`}>
           <button type="button" 
           className="btn btn-outline-info btn-rounded" 
-          data-mdb-ripple-color="dark">Create a space</button>
+          data-mdb-ripple-color="dark">My space</button>
         </Link>
 
       <button
@@ -126,7 +127,7 @@ export default function ProfilePage() {
       >
         Edit profile
       </button>
-      {editTab && <EditProfileCard />}
+     
     </div>
     </div>
   ) : (

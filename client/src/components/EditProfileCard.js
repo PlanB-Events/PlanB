@@ -49,7 +49,7 @@ export default function EditProfile(){
 
 
     return(
-        <div className="formContainer">
+        <div className="formContainer editProfileCard">
         <h3>Edit your profile</h3>
 
           <form onSubmit={handleSubmit}>
@@ -66,7 +66,8 @@ export default function EditProfile(){
 
           <div className="mb-3">
             <label className="form-label">Image:</label>
-            <img width={400} src={imageUrl} alt=""/>
+            <img className="form-control"
+            id="formFile" width={400} src={imageUrl} alt=""/>
             <input className="form-control"
           id="formFile" name="imageUrl" type="file" onChange={(event) => {handleFileUpload(event)}} />
           </div>
