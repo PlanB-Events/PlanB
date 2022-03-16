@@ -14,7 +14,15 @@ class SpacesService {
     //??
     getAllSpaces = () => {
         return this.api.get(`/spaces`).then(response=>response.data)
-      };
+    };
+
+    getSpace = (id) => {
+      return this.api.get(`/spaces/${id}`).then(response=>response.data)
+    }
+
+    deleteSpace = (spaceId, ownerId) => {
+      return this.api.delete(`/spaces/${spaceId}`, { data: {ownerId} }).then(response=>response.data)
+    }
 
 }
 

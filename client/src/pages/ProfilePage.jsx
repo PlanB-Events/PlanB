@@ -29,20 +29,25 @@ export default function ProfilePage() {
   }
 
   return currentUser._id ? (
-    <div>
-      <h1>Profile</h1>
-      <img
+    <div className="containerDiv">
+      <div className="profile-header">
+        <h1>This is Profile page</h1>
+     
+      <img id="profileImg"
         src={currentUser.imageUrl}
         alt="profileimg"
         height="150px"
         width="150px"
       />
-      <div>
+       </div>
+      <div className="userData">
         <h4>Name:</h4>
         <p>{currentUser.username}</p>
         <h4>Email:</h4>
         <p>{currentUser.email}</p>
       </div>
+
+      <div className="eventsData">
       <h4>Events joined:</h4>
       <ul>
         {currentUser.joinedEvents.length ? (
@@ -67,26 +72,21 @@ export default function ProfilePage() {
           <li>You didn't joined any event right now</li>
         )}
       </ul>
+      </div>
 
-      <Link to="/events/create">
-        <button
-          type="button"
-          className="btn btn-outline-info btn-rounded"
-          data-mdb-ripple-color="dark"
-        >
-          Create an Event
-        </button>
-      </Link>
+      <div className="profile-btns">
+        <Link to="/events/create">
+          <button type="button" 
+          className="btn btn-outline-info btn-rounded" 
+          data-mdb-ripple-color="dark">Create an Event</button>{" "}
+        </Link>
 
-      <Link to="/profile/myspace">
-        <button
-          type="button"
-          className="btn btn-outline-info btn-rounded"
-          data-mdb-ripple-color="dark"
-        >
-          Create a space
-        </button>
-      </Link>
+        <Link to={`/profile/${currentUser._id}/myspace`}>
+          {" "}
+          <button type="button" 
+          className="btn btn-outline-info btn-rounded" 
+          data-mdb-ripple-color="dark">Create a space</button>
+        </Link>
 
       <button
         type="button"
