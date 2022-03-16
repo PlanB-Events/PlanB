@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import PastEventsCard from "../components/PastEventsCard.js";
 import eventsService from "../services/events";
 import { useEffect, useState } from "react";
-import LoadingComponent from "../components/Loading";
-import audienceImage from "../assets/audience-1.jpg"
 
 function HomePage() {
   const [randomEvent, setRandomEvent] = useState({});

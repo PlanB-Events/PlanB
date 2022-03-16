@@ -76,9 +76,9 @@ export default function CreateEventCard() {
   }
 
   return (
-    <div className="createEventCard">
-      <h3>Create a new event</h3>
-      <h2>Join a community run by artists for artists.</h2>
+    <div className="formContainer">
+      <h2>Create a new event</h2>
+      <h4>Join a community run by artists for artists.</h4>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -115,7 +115,7 @@ export default function CreateEventCard() {
 
         <div className="mb-3">
         <label className="form-label">Image:</label>
-        <img width={400} src={imageUrl} alt="img-previsualization" />
+        <img width={400} src={imageUrl} alt="" />
         <input
           className="form-control"
           id="formFile"

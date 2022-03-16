@@ -78,11 +78,10 @@ export default function ProfilePage() {
         <Link to="/events/create">
           <button type="button" 
           className="btn btn-outline-info btn-rounded" 
-          data-mdb-ripple-color="dark">Create an Event</button>{" "}
+          data-mdb-ripple-color="dark">Create an Event</button>
         </Link>
 
         <Link to={`/profile/${currentUser._id}/myspace`}>
-          {" "}
           <button type="button" 
           className="btn btn-outline-info btn-rounded" 
           data-mdb-ripple-color="dark">Create a space</button>
