@@ -104,6 +104,7 @@ export default function CreateEventCard(){
         <input
           type="date"
           name="date"
+          min={new Date().toISOString().slice(0, 10)}
           value={formData.date}
           onChange={handleChange}
         />

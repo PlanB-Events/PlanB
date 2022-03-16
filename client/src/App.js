@@ -67,7 +67,7 @@ export default function App() {
         <Route exact path={"/profile/:id"} element={<ProfilePage />} />
 
         <Route exact path={"/events/map"} element={<MapPage />} />
-        <Route exact path={"/profile/myspace"} element={<MySpacePage />} />
+        <Route exact path={"/profile/:id/myspace"} element={<MySpacePage />} />
       </Routes>
     </div>
   );

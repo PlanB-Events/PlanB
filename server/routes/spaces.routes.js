@@ -40,8 +40,13 @@ router.post("/", (req, res, next)=>{
 
     User.findById(id)
     .then((user)=>{
-        Space.create({$set: {owner: user._id}, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess})
-        .then((createdSpace) => res.json(createdSpace))
+        Space.create({owner: user._id, name, imageUrl, availableDates, availableHours, capacity, address, allowedPets, allowedBeverages, covidTest, wheelchairAccess})
+        .then((createdSpace) =>{
+            const spaceId = createdSpace._id
+            User.findByIdAndUpdate(user._id, {$set: {space: spaceId}})
+            .then((_)=>{
+                res.json(createdSpace)})
+            })
         .catch((error)=> res.json(error))
     })
 })
@@ -54,13 +59,16 @@ router.delete("/:id", (req, res, next)=>{
         return;
     }
 
-    Space.findByIdAndRemove(req.params.id)
-    .then(() =>
-      res.json({
-        message: `User with ${req.params.id} is removed successfully.`,
-      })
-    )
-    .catch(error => res.json(error))
+    User.findByIdAndUpdate(req.body.ownerId, {$unset: {space: req.params.id}})
+    .then((_)=>{
+        Space.findByIdAndRemove(req.params.id)
+        .then(() =>
+          res.json({
+            message: `Space with ${req.params.id} is removed successfully.`,
+          })
+        )
+        .catch(error => res.json(error))
+    })
 })
 
 
