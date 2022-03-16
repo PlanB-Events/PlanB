@@ -15,13 +15,16 @@ function HomePage() {
 
   return ( 
     <div className="App pageContainer">
+    
       <div className="card bg-white">
+      <div className="card-body">
         <img className="card-img" src="/images/audience-1.jpg" alt="concert" />
         <div className="card-img-overlay d-flex">
         <Link to={`/events`} className="btn btn-outline-primary btn-rounded align-self-center mx-auto">
           <h3>Find an event!</h3>
         </Link>
         </div>
+      </div>
       </div>
 
       <div className="card bg-white">
@@ -36,7 +39,6 @@ function HomePage() {
       <div className="card bg-white">
       <div className="card-body">
         <img className="card-img" width={400} src="/images/spaghetti-1.jpg" alt="" />
-        
         <div className=" d-flex card-img-overlay" >
               <Link to={`/events/${randomEvent._id}`} className="btn btn-outline-primary btn-rounded align-self-center mx-auto">
               <h3>Get me a PlanB!</h3>

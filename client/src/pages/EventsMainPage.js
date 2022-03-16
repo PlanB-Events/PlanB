@@ -6,7 +6,6 @@ export default function EventsMainPage(){
 
     return(
         <div className="containerDiv">
-
             <div className="card bg-white">
                 <div className="card-body">
                     <img className="card-img" src="/images/allEventsç.jpg" alt="" />
