@@ -36,8 +36,16 @@ export default function MapPage(){
                         const marker = new mapboxgl.Marker({element: elemRef.current})
                         .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
                         .setPopup(new mapboxgl.Popup().setHTML(`
-                        <h5>${event.title}</h5>
-                        <p>${event.space.address.direction}</p>
+                        <a href='/events/${event._id}?b=/events/map'><h6>${event.title}</h6></a>
+                        <p>
+                        Category: ${event.category}
+                        <br/>
+                        Time: ${event.time}
+                        </p>
+                        <p>
+                        Address:
+                        <br/>
+                        ${event.space.address.direction}</p>
                         `))
                         .addTo(map.current)
                     }

@@ -129,3 +129,7 @@ background-color: #0FF07B;
   padding: 10px;
   background-color: #0FF07B;
 }
+
+.buttonTest{
+  display: flex;
+}
