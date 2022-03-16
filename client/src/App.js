@@ -35,19 +35,18 @@ export default function App() {
     :
     <div className="App">
      
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark" style={{fontSize: 15}}>
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
             <Navbar.Brand>
               <img src="/PBlogo.png" width="30" height="27" className="d-inline-block align-top" alt="planb-logo"/>
-              {" "}
-              PlanB - Events
+              <span style={{fontSize: 15}}> PlanB - Events</span>
             </Navbar.Brand>
           </Link>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/events/map">Map</Nav.Link>
-            <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
+            <Nav.Link as={Link} to="/">Surprise me!</Nav.Link>
             <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as={Link} to={`/profile/${user._id}`}>Profile</NavDropdown.Item>}

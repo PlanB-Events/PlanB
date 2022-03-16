@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
@@ -195,6 +195,7 @@ export default function CreateSpaceForm() {
             onChange={handleDirectionChange}
             className="form-control"
           />
+          <p className="addressApi">{apiAddress ? apiAddress : "Selected addres here"}</p>
         </div>
 
         <div className="mb-3">
@@ -252,6 +253,7 @@ export default function CreateSpaceForm() {
         >
           Submit
         </button>
+        <Link type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" to={`/profile/${user._id}`}>Go back to profile</Link>
       </form>
     </div>
   );
