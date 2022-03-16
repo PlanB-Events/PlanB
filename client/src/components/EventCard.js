@@ -2,7 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react"
 import userService from "../services/users";
 import {AuthContext} from "../context/auth.context"
-import LoadingComponent from "../components/Loading"
+import LoadingComponent from "../components/Loading";
+import eventsService from "../services/events";
 
 export default function EventCard(props){
     
@@ -14,7 +15,9 @@ export default function EventCard(props){
     useEffect(()=>{
         if(user._id){
             userService.getUser(user._id)
-            .then((foundUser)=>{setCurrentUser(foundUser)})
+            .then((foundUser)=>{
+                console.log("FOUND", foundUser)
+                setCurrentUser(foundUser)})
         }
     }, [user._id, isRun])
 
@@ -31,6 +34,16 @@ export default function EventCard(props){
            setIsRun(!isRun)
            setCurrentUser(updatedUser)})
     }
+
+    function deleteEvent(eventId, userId){
+        eventsService.deleteEvent(eventId, userId)
+        .then((_)=>{
+          setIsRun(!isRun);
+          props.setEventsIsRun(!props.eventsIsRun)
+        })
+    }
+
+
     return(
         <div>
             <Link to={`/events/${_id}`}>
@@ -43,12 +56,16 @@ export default function EventCard(props){
                 <h3>{date}</h3>
                 <h2>{location}</h2>
                 {currentUser._id ?
+                    currentUser.createdEvents.some((createdEvent)=> createdEvent._id === _id)
+                    ?
+                    <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={()=>deleteEvent(_id, currentUser._id)}>Delete</button>
+                    :
                     currentUser.joinedEvents
                     .some((joinedEvent)=> joinedEvent._id === _id)
                     ?
-                    <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
+                    <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
                     :
-                    <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
+                    <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
                 :
                 <p>Log in to join this event!</p>
                 }

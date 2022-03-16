@@ -10,26 +10,24 @@ import FilterButton from "../components/FilterButton";
 export default function EventsListPage(props){
 
     const [eventsData, setEventsData] = useState([]);
-    const {category}= useParams("category"); 
+    const {category}= useParams("category");
+    const [eventsIsRun, setEventsIsRun] = useState(false);
 
     useEffect(()=>{
         eventsService.getSelectedEvents(category)
         .then((selectedEvents)=>{
+            console.log("SELECTEDEVENETS",selectedEvents)
             setEventsData(selectedEvents)})
-    }, [category])
+    }, [category, eventsIsRun])
 
 
     return(
-        <div>
-            <div className="filter-btn">
-            <FilterButton setEventsData={setEventsData} eventsData={eventsData} />
-            </div>
-        
+        <div>        
             {eventsData.length ?
             <div>
                 {eventsData.map((event) => (
                     <div style={{ maxWidth: "400px" }} key={event._id} className="card">
-                <EventCard event = {event}/>
+                        <EventCard eventsIsRun={eventsIsRun} setEventsIsRun={setEventsIsRun} event = {event}/>
                     </div>
                 ))}
             </div>
