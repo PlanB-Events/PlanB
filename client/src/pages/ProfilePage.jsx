@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import userService from "../services/users";
 import LoadingComponent from "../components/Loading";
 import EditProfileCard from "../components/EditProfileCard";
+import eventsService from "../services/events";
 
 export default function ProfilePage() {
   const { id } = useParams("id");
@@ -26,6 +27,13 @@ export default function ProfilePage() {
       setIsRun(!isRun);
       setCurrentUser(updatedUser);
     });
+  }
+
+  function deleteEvent(eventId, userId){
+    eventsService.deleteEvent(eventId, userId)
+    .then((_)=>{
+      setIsRun(!isRun);
+    })
   }
 
   return currentUser._id ? (
@@ -70,6 +78,29 @@ export default function ProfilePage() {
           })
         ) : (
           <li>You didn't joined any event right now</li>
+        )}
+      </ul>
+      <h4>Created Events:</h4>
+      <ul>
+        {currentUser.createdEvents.length ? (
+          currentUser.createdEvents.map((event) => {
+            return (
+              <li key={event._id}>
+                <h6>{event.title}</h6>
+                <button type="button" 
+                className="btn btn-outline-info btn-rounded" 
+                data-mdb-ripple-color="dark"
+                  onClick={() => {
+                    deleteEvent(event._id, currentUser._id);
+                  }}
+                >
+                  Delete Event
+                </button>
+              </li>
+            );
+          })
+        ) : (
+          <li>You didn't created any event yet</li>
         )}
       </ul>
       </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams, Link } from "react-router-dom";
 import eventsService from "../services/events";
 import LoadingComponent from "../components/Loading";
 
@@ -7,23 +7,16 @@ export default function EventsDetailsPage() {
   const { id } = useParams("id");
   const [currentEvent, setCurrentEvent] = useState({});
 
-  const {
-    _id,
-    title,
-    imageUrl,
-    category,
-    description,
-    duration,
-    time,
-    date,
-    space,
-  } = currentEvent;
-
+  
   useEffect(() => {
     eventsService.getEvent(id).then((foundEvent) => {
       setCurrentEvent(foundEvent);
     });
   }, [id]);
+    const [search] = useSearchParams();
+    const backpage = search.get("b");
+
+    const {_id, title, imageUrl, category, description, duration, time, date, space } = currentEvent;
 
   return _id ? (
       <div className="card align-items-center">
@@ -45,6 +38,8 @@ export default function EventsDetailsPage() {
             <p className="card-text">{description}</p>
             <h3 className="card-text">Space:</h3>
             <p className="card-text">{space.name}</p>
+
+            {backpage && <Link to={`${backpage}`}>Go back to map</Link>}
             </div>
         </div>
         </div>
