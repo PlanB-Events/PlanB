@@ -32,7 +32,7 @@ export default function EventCard(props) {
     });
   }
   return (
-    <div  className="card-body ">
+    <div className="card-body">
       <div key={_id}>
         <img className="card-img-top" src={imageUrl} alt="eventImg" />
 
