@@ -6,10 +6,6 @@ export default function EventsMainPage(){
 
     return(
         <div className="containerDiv">
-            <div className="filter-btn">
-            <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark">Choose a date</button>
-            </div>
-
             <div className="card bg-white">
                 <div className="card-body">
                     <img className="card-img" src="/images/allEventsç.jpg" alt="" />
