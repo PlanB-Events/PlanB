@@ -4,6 +4,7 @@ import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
+import GoBackButton from "./GoBackButton";
 
 export default function CreateSpaceForm() {
   const { user } = useContext(AuthContext);
@@ -253,7 +254,7 @@ export default function CreateSpaceForm() {
         >
           Submit
         </button>
-        <Link type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" to={`/profile/${user._id}`}>Go back to profile</Link>
+        <GoBackButton />
       </form>
     </div>
   );
