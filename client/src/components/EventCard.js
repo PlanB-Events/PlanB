@@ -46,9 +46,9 @@ export default function EventCard(props){
                     currentUser.joinedEvents
                     .some((joinedEvent)=> joinedEvent._id === _id)
                     ?
-                    <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
+                    <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
                     :
-                    <button type="button" class="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
+                    <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
                 :
                 <p>Log in to join this event!</p>
                 }
