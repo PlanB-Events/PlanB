@@ -115,7 +115,13 @@ export default function CreateEventCard() {
 
         <div className="mb-3">
         <label className="form-label">Image:</label>
-        <img width={400} src={imageUrl} alt="" />
+        <img 
+          className="form-control"
+          id="formFile"width={400} 
+          src={imageUrl} 
+          alt="" 
+        />
+
         <input
           className="form-control"
           id="formFile"
@@ -126,7 +132,6 @@ export default function CreateEventCard() {
           }}
         />
         </div>
-
 
         <div className="mb-3">
         <label className="form-label"> Date:</label>
