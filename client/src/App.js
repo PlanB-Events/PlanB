@@ -35,7 +35,7 @@ export default function App() {
     :
     <div className="App">
      
-      <Navbar bg="dark" variant="dark" style={{fontSize: 15}}>
+      <Navbar className="navbar" variant="dark">
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
