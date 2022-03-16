@@ -106,8 +106,13 @@ router.post("/", (req, res, next)=>{
 
     User.findById(id)
     .then((user)=>{
-        Event.create({space, $set: {producer: user._id}, title, imageUrl, category, description, date, time, duration})
-        .then((createdEvent) => res.json(createdEvent))
+        Event.create({space, producer: user._id, title, imageUrl, category, description, date, time, duration})
+        .then((createdEvent) => {
+            User.findByIdAndUpdate(user._id, {$push: {createdEvents: createdEvent._id}})
+            .then((_)=>{
+                res.json(createdEvent);
+            })
+        })
         .catch((error)=> res.json(error))
         
     })
