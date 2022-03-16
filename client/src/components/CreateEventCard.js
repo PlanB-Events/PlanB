@@ -192,7 +192,7 @@ export default function CreateEventCard() {
         </div>
 
         <button
-          class="btn btn-outline-info btn-rounded"
+          className="btn btn-outline-info btn-rounded"
           data-mdb-ripple-color="dark"
           type="submit"
         >

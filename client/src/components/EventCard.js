@@ -50,7 +50,7 @@ export default function EventCard(props) {
             ) ? (
               <button
                 type="button"
-                class="btn btn-outline-info btn-rounded"
+                className="btn btn-outline-info btn-rounded"
                 data-mdb-ripple-color="dark"
                 onClick={handleLeaveEvent}
               >
@@ -59,7 +59,7 @@ export default function EventCard(props) {
             ) : (
               <button
                 type="button"
-                class="btn btn-outline-info btn-rounded"
+                className="btn btn-outline-info btn-rounded"
                 data-mdb-ripple-color="dark"
                 onClick={handleJoinEvent}
               >
