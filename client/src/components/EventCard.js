@@ -4,6 +4,9 @@ import userService from "../services/users";
 import { AuthContext } from "../context/auth.context";
 import LoadingComponent from "../components/Loading";
 import eventsService from "../services/events";
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 export default function EventCard(props) {
   const { _id, title, imageUrl, category, date, location } = props.event;
@@ -42,12 +45,17 @@ export default function EventCard(props) {
 
   return (
     <div>
-      <div key={_id} className="eventCard">
-        <img width={400} src={imageUrl} alt="eventImg" />
-        <Link to={`/events/${_id}`}>
-          <h3>{title}</h3>
-        </Link>
-        <h3 className="card-text">{category}</h3>
+      <Row xs={1} md={2} className="g-4">
+        {Array.from({ length: 1 }).map((_, idx) => (
+            <Col>
+            <Card>
+                <Card.Img variant="top" width={400} src={imageUrl} alt="eventImg" />
+                <Card.Body>
+                    <Card.Title><Link to={`/events/${_id}`}>
+                    <h3>{title}</h3>
+                    </Link></Card.Title>
+                <Card.Text>
+                <h3 className="card-text">{category}</h3>
         <h3 className="card-text">{date.toString().slice(0, 10)}</h3>
         <h2 className="card-text">{location}</h2>
         {currentUser._id ? (
@@ -85,7 +93,15 @@ export default function EventCard(props) {
         ) : (
           <p>Log in to join this event!</p>
         )}
-      </div>
+                </Card.Text>
+                </Card.Body>
+            </Card>
+            </Col>
+        ))}
+        </Row>
     </div>
   );
 }
+
+
+

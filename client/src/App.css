@@ -133,3 +133,8 @@ background-color: #0FF07B;
 .buttonTest{
   display: flex;
 }
+
+.navbar{
+background-color: rgb(65, 65, 65);
+color: white;
+}
