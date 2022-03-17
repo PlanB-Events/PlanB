@@ -209,7 +209,22 @@ background-color: #0FF07B;
   display: flex;
 }
 
+.logoSpace{
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.editProfileCard{
+  z-index: 30;
+}
 .navbar{
 background-color: rgb(65, 65, 65);
 color: white;
+}
+
+.spaceButton{
+  margin-bottom: 10px;
+}
+.trashButton{
+  margin: 7px;
 }
