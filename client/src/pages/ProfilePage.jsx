@@ -36,6 +36,9 @@ export default function ProfilePage() {
   }
 
   return currentUser._id ? (
+    <div className="card">
+
+
     <div className="card align-items-center">
       <div className="card-body">
         <h1>{currentUser.username}'s profile</h1>
@@ -117,7 +120,7 @@ export default function ProfilePage() {
         <Link to="/events/create">
           <button
             type="button"
-            className="btn btn-outline-info btn-rounded spaceButton"
+            className="btn btn-dark btn-rounded"
             data-mdb-ripple-color="dark"
           >
             Create an Event
@@ -127,7 +130,7 @@ export default function ProfilePage() {
         <Link to={`/profile/${currentUser._id}/myspace`}>
           <button
             type="button"
-            className="btn btn-outline-info btn-rounded"
+            className="btn btn-dark btn-rounded"
             data-mdb-ripple-color="dark"
           >
             My space
@@ -136,8 +139,7 @@ export default function ProfilePage() {
         <div>
           <button
             type="button"
-            className="btn btn-outline-info btn-rounded "
-            data-mdb-ripple-color="dark"
+            className="btn btn-dark btn-rounded"
             onClick={() => toggleEdit()}
           >
             Edit profile
@@ -145,6 +147,8 @@ export default function ProfilePage() {
         </div>
       </div>
     </div>
+    </div>
+
   ) : (
     <LoadingComponent />
   );

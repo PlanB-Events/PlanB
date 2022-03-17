@@ -82,16 +82,16 @@ export default function EventsDetailsPage() {
                 currentUser.joinedEvents
                 .some((joinedEvent)=> joinedEvent._id === _id)
                 ?
-                <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
+                <button type="button" className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" onClick={handleLeaveEvent}>Leave the event</button>
                 :
-                <button type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
+                <button type="button" className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" onClick={handleJoinEvent}>Join this event!</button>
             :
             <p>Log in to join this event!</p>
             }
 
             <GoBackButton/>
 
-            {backpage && <Link type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" to={`${backpage}`}>Go back to map</Link>}
+            {backpage && <Link type="button" className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" to={`${backpage}`}>Go back to map</Link>}
             </div>
         </div>
         </div>
