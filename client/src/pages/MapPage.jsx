@@ -35,7 +35,7 @@ export default function MapPage(){
                     if(event.date.slice(0, 10) === today.toISOString().slice(0, 10)){
                         const marker = new mapboxgl.Marker({element: elemRef.current})
                         .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
-                        .setPopup(new mapboxgl.Popup().setHTML(`
+                        .setPopup(new mapboxgl.Popup({className: "popupContainer"}).setHTML(`
                         <a href='/events/${event._id}?b=/events/map'><h6>${event.title}</h6></a>
                         <p>
                         Category: ${event.category}

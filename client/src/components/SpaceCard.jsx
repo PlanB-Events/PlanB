@@ -10,9 +10,9 @@ export default function SpaceCard(props){
                 <img src={imageUrl} alt="spaceImg" />
                 <h3>{name}</h3>
                 <h3>{address.direction}</h3>
-                <h2>{availableDates}</h2>
-                <h2>{availableHours}</h2>
-                <h2>{capacity} </h2>
+                <h2>Date: {availableDates[0].slice(0, 10)}</h2>
+                <p>Available Hours: {availableHours.map((hour)=>{return(<span>{hour}</span>)})}</p>
+                <h2>Capacity: {capacity}</h2>
             </div>
         </div>
     )

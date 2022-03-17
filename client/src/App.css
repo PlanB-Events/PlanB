@@ -1,3 +1,7 @@
+*{
+  font-family: 'Fredoka', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -85,9 +89,25 @@
   width: 100%;
 }
 
+.popupContainer .mapboxgl-popup-content{
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.popupContainer .mapboxgl-popup-content button{
+  font-size: 20px;
+  margin: 2px;
+}
+
 .spaceCard h3,
 .spaceCard h2{
   font-size: 10px;
+}
+
+.spaceCard p{
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .spaceCard img{
