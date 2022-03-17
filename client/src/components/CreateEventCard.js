@@ -4,6 +4,7 @@ import eventsService from "../services/events";
 import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
+import GoBackButton from "./GoBackButton";
 
 export default function CreateEventCard() {
   const { user } = useContext(AuthContext);
@@ -197,6 +198,7 @@ export default function CreateEventCard() {
         </div>
 
         <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+        <GoBackButton />
         </form>
       </div>
     )

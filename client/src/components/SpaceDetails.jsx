@@ -6,6 +6,7 @@ import covidTrueLogo from "../assets/virus-test-tube-icon-black-green.svg";
 import wheelchairTrueLogo from "../assets/wheelchair.svg";
 import LoadingComponent from "./Loading";
 import { useNavigate } from "react-router-dom";
+import GoBackButton from "./GoBackButton";
 
 export default function SpaceDetails(props){
 
@@ -49,6 +50,7 @@ export default function SpaceDetails(props){
             {currentSpace.wheelchairAccess && <img src={wheelchairTrueLogo} alt="features"/>}
 
             <button onClick={deleteSpace}>Delete the space</button>
+            <GoBackButton />
 
         </div>
         :

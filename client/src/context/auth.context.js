@@ -25,23 +25,23 @@ function AuthProviderWrapper(props) {
         // If the server verifies that JWT token is valid  ✅
         const user = response;
        // Update state variables        
-        setIsLoggedIn(true);
         setUser(user);
+        setIsLoggedIn(true);
         setIsLoading(false);
       })
       .catch((error) => {
         // If the server sends an error response (invalid token) ❌
         // Update state variables        
+        setUser({});
         setIsLoggedIn(false);
         setIsLoading(false);
-        setUser({});
       });
 
     } else {
       // If the token is not available
+      setUser({});
       setIsLoggedIn(false);
       setIsLoading(false);
-      setUser({});
     }
   }
 

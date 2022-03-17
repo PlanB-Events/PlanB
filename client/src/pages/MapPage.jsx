@@ -67,9 +67,9 @@ export default function MapPage(){
 
     return(
         <div>
-            <h1>Today's Events</h1>
-            <div className="sidebar">Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}</div>
-            <div ref={mapContainer} className="map-container" />
+            <div ref={mapContainer} className="map-container">
+                <h1 className="mapTitle">Today's Events</h1>
+            </div>
         </div>
     )
 }
