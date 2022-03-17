@@ -4,14 +4,7 @@ import PastEventsCard from "../components/PastEventsCard.js";
 import eventsService from "../services/events";
 import { useEffect, useState } from "react";
 
-function HomePage() {
-  const [randomEvent, setRandomEvent] = useState({});
-
-  useEffect(() => {
-    eventsService.getRandomEvent().then((event) => {
-     setRandomEvent(event);
-    })
-  }, []);
+function HomePage(props) {
 
   return ( 
     <div className="App pageContainer">
@@ -40,7 +33,7 @@ function HomePage() {
       <div className="card-body">
         <img className="card-img" width={400} src="/images/spaghetti-1.jpg" alt="" />
         <div className=" d-flex card-img-overlay" >
-              <Link to={`/events/${randomEvent._id}`} className="btn btn-outline-primary btn-rounded align-self-center mx-auto">
+              <Link to={`/events/${props.randomEvent._id}`} className="btn btn-outline-primary btn-rounded align-self-center mx-auto">
               <h3>Get me a PlanB!</h3>
              </Link>
         </div>
