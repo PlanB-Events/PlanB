@@ -12,7 +12,7 @@ export default function SpaceCard(props){
                 <h3>{address.direction}</h3>
                 <h2>{availableDates}</h2>
                 <h2>{availableHours}</h2>
-                <h2>{capacity}</h2>
+                <h2>{capacity} </h2>
             </div>
         </div>
     )

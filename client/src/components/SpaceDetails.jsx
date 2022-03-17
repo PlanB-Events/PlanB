@@ -46,18 +46,13 @@ export default function SpaceDetails(props) {
           </p>
           <h4 className="card-text">Available Date:</h4>
 
-<<<<<<< HEAD
           <p className="card-text">
             {" "}
             {currentSpace.availableDates[0].slice(0, 10)}
           </p>
-=======
-            <button onClick={deleteSpace}>Delete the space</button>
-            <GoBackButton />
->>>>>>> bef5f00daa097a4c50cb948bd310e7a1d1f874e4
 
           <h4 className="card-text">Capacity:</h4>
-          <p className="card-text">{currentSpace.capacity}</p>
+          <p className="card-text">{currentSpace.capacity} people</p>
 
           <h4 className="card-text">Address:</h4>
           <p className="card-text">{currentSpace.address.direction}</p>
@@ -76,12 +71,17 @@ export default function SpaceDetails(props) {
 
           <div>
             <button
-              className="btn btn-outline-info btn-rounded"
+              className="btn btn-outline-info btn-rounded spaceButton"
               data-mdb-ripple-color="dark"
               onClick={deleteSpace}
             >
               Delete space
             </button>
+            <div>
+            <GoBackButton />
+
+            </div>
+
           </div>
         </div>
       </div>
