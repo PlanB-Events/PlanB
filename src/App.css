@@ -1,3 +1,7 @@
+*{
+  font-family: 'Fredoka', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -19,6 +23,97 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.addressApi{
+  border: 1px solid black;
+  font-size: 0.9rem;
+  height: 70px;
+}
+
+.map-container{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.mapTitle{
+  z-index: 90;
+  position: absolute;
+  background-color: rgba(33, 37, 41, 0.95);
+  color: white;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.spaceContainerSection{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.spacesContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  height: 50vh;
+  overflow: auto;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+
+}
+
+.spaceCardContainer{
+  width: 45%;
+  margin: 2px;
+}
+
+.spaceCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 2px;
+  width: 100%;
+}
+
+.popupContainer .mapboxgl-popup-content{
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.popupContainer .mapboxgl-popup-content button{
+  font-size: 20px;
+  margin: 2px;
+}
+
+.spaceCard h3,
+.spaceCard h2{
+  font-size: 10px;
+}
+
+.spaceCard p{
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spaceCard img{
+  width: 90%;
+  height: 40%;
+  border-radius: 10px;
 }
 
 .App-header {
@@ -129,3 +224,44 @@ background-color: #0FF07B;
   padding: 10px;
   background-color: #0FF07B;
 }
+
+.buttonTest{
+  display: flex;
+}
+
+.logoSpace{
+  margin: 10px;
+  padding-bottom: 10px;
+}
+
+.editProfileCard{
+  z-index: 30;
+}
+.navbar{
+background-color: rgb(65, 65, 65);
+color: white;
+}
+
+.spaceButton{
+  margin: 10px;
+}
+
+.trashButton{
+  margin: 7px;
+}
+
+
+/* BUTTON  */
+/* From cssbuttons.io by @Gumpack */
+
+ 
+ .btn {
+  margin: 5px;
+  text-align: center;
+  color: rgb(8, 1, 1);
+  border-radius: 20px;
+  display: block;
+  border: 0px;
+  box-shadow: 0px 0px 4px -79px #19f0d3;
+ }
+ 

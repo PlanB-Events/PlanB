@@ -25,7 +25,11 @@ class EventsService {
 
     getRandomEvent = () => {
           return this.api.get(`/events/random`).then(response=>response.data)
-  };
+    };
+
+    deleteEvent = (eventId, userId) => {
+      return this.api.delete(`/events/${eventId}`, { data: {userId} }).then(response=>response.data)
+    };
 
 }
 

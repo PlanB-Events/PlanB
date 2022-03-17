@@ -35,9 +35,17 @@ export default function MapPage(){
                     if(event.date.slice(0, 10) === today.toISOString().slice(0, 10)){
                         const marker = new mapboxgl.Marker({element: elemRef.current})
                         .setLngLat([event.space.address.coordinates[0], event.space.address.coordinates[1]])
-                        .setPopup(new mapboxgl.Popup().setHTML(`
-                        <h5>${event.title}</h5>
-                        <p>${event.space.address.direction}</p>
+                        .setPopup(new mapboxgl.Popup({className: "popupContainer"}).setHTML(`
+                        <a href='/events/${event._id}?b=/events/map'><h6>${event.title}</h6></a>
+                        <p>
+                        Category: ${event.category}
+                        <br/>
+                        Time: ${event.time}
+                        </p>
+                        <p>
+                        Address:
+                        <br/>
+                        ${event.space.address.direction}</p>
                         `))
                         .addTo(map.current)
                     }
@@ -59,9 +67,9 @@ export default function MapPage(){
 
     return(
         <div>
-            <h1>Today's Events</h1>
-            <div className="sidebar">Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}</div>
-            <div ref={mapContainer} className="map-container" />
+            <div ref={mapContainer} className="map-container">
+                <h1 className="mapTitle">Today's Events</h1>
+            </div>
         </div>
     )
 }

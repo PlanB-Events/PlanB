@@ -15,15 +15,31 @@ import LoadingComponent from "./components/Loading";
 import MapPage from "./pages/MapPage.jsx";
 import EventsDetailsPage from "./pages/EventsDetailsPage";
 import MySpacePage from "./pages/MySpacePage";
+import userService from "./services/users.js";
+import eventsService from "./services/events.js";
 
 export default function App() {
-
-
 
   const navigate= useNavigate()
 
   const {isLoggedIn, logOutUser, user, isLoading} = useContext(AuthContext);
   
+  const [currentUser, setCurrentUser] = useState({})
+
+  useEffect(()=>{
+    userService.getUser(user._id)
+    .then((foundUser)=>{
+      setCurrentUser(foundUser)
+    })
+  }, [user._id])
+
+  const [randomEvent, setRandomEvent] = useState({});
+
+  useEffect(() => {
+    eventsService.getRandomEvent().then((event) => {
+     setRandomEvent(event);
+    })
+  }, []);
 
   function handleLogOut(){
     logOutUser();
@@ -35,20 +51,19 @@ export default function App() {
     :
     <div className="App">
      
-      <Navbar bg="dark" variant="dark">
+      <Navbar className="navbar" variant="dark" style={{fontSize: 15}}>
         <Container>
       
           <Link style={{textDecoration: 'none'}} to="/">
             <Navbar.Brand>
               <img src="/PBlogo.png" width="30" height="27" className="d-inline-block align-top" alt="planb-logo"/>
-              {" "}
-              PlanB - Events
+              <span style={{fontSize: 15}}> PlanB - Events</span>
             </Navbar.Brand>
           </Link>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/events/map">Map</Nav.Link>
-            <Nav.Link as={Link} to="/">Get me a PlanB!</Nav.Link>
-            <NavDropdown title={<img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
+            <Nav.Link as={Link} to={`/events/${randomEvent._id}`}>Random PB!</Nav.Link>
+            <NavDropdown title={isLoggedIn ? <img src={currentUser.imageUrl} style={{ width: 30, height: 30, borderRadius: 50}} alt="dropdown-logo"/>  : <img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as={Link} to={`/profile/${user._id}`}>Profile</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as="button" onClick={()=>{handleLogOut()}}>Logout</NavDropdown.Item>}
@@ -58,7 +73,7 @@ export default function App() {
       </Navbar>
 
       <Routes>
-        <Route exact path={"/"} element={<HomePage/>} />
+        <Route exact path={"/"} element={<HomePage randomEvent={randomEvent}/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
         <Route exact path={"/events"} element={<EventsMainPage/>} />
         <Route exact path={"/events/:id"} element={<EventsDetailsPage/>} />
