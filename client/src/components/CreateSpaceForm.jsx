@@ -248,7 +248,7 @@ export default function CreateSpaceForm() {
         </div>
 
         <button
-          className="btn btn-outline-info btn-rounded"
+          className="btn btn-dark btn-rounded"
           data-mdb-ripple-color="dark"
           type="submit"
         >

@@ -66,7 +66,7 @@ export default function SignupCard(props){
             </div>
          
 
-        <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+        <button className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         </form>
      </div>  
     )

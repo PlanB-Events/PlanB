@@ -63,7 +63,7 @@ export default function EventCard(props) {
             (createdEvent) => createdEvent._id === _id
           ) ? (
             <button
-              className="btn btn-outline-info btn-rounded"
+              className="btn btn-dark btn-rounded"
               data-mdb-ripple-color="dark"
               onClick={() => deleteEvent(_id, currentUser._id)}
             >
@@ -74,7 +74,7 @@ export default function EventCard(props) {
             ) ? (
             <button
               type="button"
-              className="btn btn-outline-info btn-rounded"
+              className="btn btn-dark btn-rounded"
               data-mdb-ripple-color="dark"
               onClick={handleLeaveEvent}
             >
@@ -83,7 +83,7 @@ export default function EventCard(props) {
           ) : (
             <button
               type="button"
-              className="btn btn-outline-info btn-rounded"
+              className="btn btn-dark btn-rounded"
               data-mdb-ripple-color="dark"
               onClick={handleJoinEvent}
             >

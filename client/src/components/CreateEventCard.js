@@ -197,7 +197,7 @@ export default function CreateEventCard() {
         </select>
         </div>
 
-        <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+        <button className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
         <GoBackButton />
         </form>
       </div>

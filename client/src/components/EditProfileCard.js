@@ -14,7 +14,7 @@ export default function EditProfile(props){
 
     const [imageUrl, setImageUrl] = useState("");
     const [formData, setFormData] = useState({
-        username: props.currentUser.username,
+      username: props.currentUser.username,
     })
 
     const handleFileUpload = (event) => {
@@ -75,7 +75,7 @@ export default function EditProfile(props){
 
 
 
-            <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
+            <button className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" type="submit">Submit</button>
             </form>
 
         </div>

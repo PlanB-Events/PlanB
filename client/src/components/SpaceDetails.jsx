@@ -71,7 +71,7 @@ export default function SpaceDetails(props) {
 
           <div>
             <button
-              className="btn btn-outline-info btn-rounded spaceButton"
+              className="btn btn-dark btn-rounded spaceButton"
               data-mdb-ripple-color="dark"
               onClick={deleteSpace}
             >
