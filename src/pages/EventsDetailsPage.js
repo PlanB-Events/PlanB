@@ -77,7 +77,7 @@ export default function EventsDetailsPage() {
             {currentUser._id ?
                 currentUser.createdEvents.some((createdEvent)=> createdEvent._id === _id)
                 ?
-                <button className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" onClick={()=>deleteEvent(_id, currentUser._id)}>Delete</button>
+                <button className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" onClick={()=>deleteEvent(_id, currentUser._id)}>Delete</button>
                 :
                 currentUser.joinedEvents
                 .some((joinedEvent)=> joinedEvent._id === _id)
@@ -91,7 +91,6 @@ export default function EventsDetailsPage() {
 
             <GoBackButton/>
 
-            {backpage && <Link type="button" className="btn btn-dark btn-rounded" data-mdb-ripple-color="dark" to={`${backpage}`}>Go back to map</Link>}
             </div>
         </div>
         </div>
