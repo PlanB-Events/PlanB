@@ -21,7 +21,7 @@ export default function EventsMainPage(){
                 <div className="card-body">
                     <img className="card-img" src="/images/audience-1.jpg" alt=""/>
                     <div className="card-img-overlay d-flex">
-                        <Link to={`/events/list/concerts`} className="btn btn-outline-dark btn-rounded align-self-center mx-auto">  
+                        <Link to={`/events/list/concert`} className="btn btn-outline-dark btn-rounded align-self-center mx-auto">  
                         <h3>Concerts</h3>
                         </Link>
                     </div>

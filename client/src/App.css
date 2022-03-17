@@ -141,4 +141,7 @@ background-color: #0FF07B;
 
 .editProfileCard{
   z-index: 30;
+.navbar{
+background-color: rgb(65, 65, 65);
+color: white;
 }
