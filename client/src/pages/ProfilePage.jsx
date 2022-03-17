@@ -50,7 +50,7 @@ export default function ProfilePage() {
         />
       </div>
 
-      {editTab && <EditProfileCard />}
+      {editTab && <EditProfileCard currentUser={currentUser} />}
 
       <div className="card-body">
         <h4 className="card-title">Name:</h4>
@@ -66,19 +66,18 @@ export default function ProfilePage() {
             currentUser.joinedEvents.map((event) => {
               return (
                 <div key={event._id}>
-                  <li>{event.title}
-                  <a
-                    onClick={() => {
-                      handleLeaveEvent(event._id);
-                    }}
-                  >
+                  <li>
+                    {event.title}
+
                     <img
+                      onClick={() => {
+                        handleLeaveEvent(event._id);
+                      }}
                       className="trashButton"
                       src="https://www.pngmart.com/files/16/Trash-Basket-Transparent-Background.png"
                       height="20px"
                       width="20px"
                     ></img>
-                  </a>      
                   </li>
                 </div>
               );
@@ -95,22 +94,15 @@ export default function ProfilePage() {
                 <div key={event._id}>
                   <li>
                     {event.title}
-                    <a
-                      bi
-                      bi-trash3-fill
-                      // type="button"
-                      // className="btn btn-outline-info btn-rounded"
-                      // data-mdb-ripple-color="dark"
+                    <img
+                      className="trashButton"
                       onClick={() => {
                         deleteEvent(event._id, currentUser._id);
                       }}
-                    >
-                      <img
-                        src="https://www.pngmart.com/files/16/Trash-Basket-Transparent-Background.png"
-                        height="20px"
-                        width="20px"
-                      ></img>
-                    </a>
+                      src="https://www.pngmart.com/files/16/Trash-Basket-Transparent-Background.png"
+                      height="20px"
+                      width="20px"
+                    ></img>
                   </li>
                 </div>
               );
@@ -125,7 +117,7 @@ export default function ProfilePage() {
         <Link to="/events/create">
           <button
             type="button"
-            className="btn btn-outline-info btn-rounded"
+            className="btn btn-outline-info btn-rounded spaceButton"
             data-mdb-ripple-color="dark"
           >
             Create an Event
@@ -141,16 +133,16 @@ export default function ProfilePage() {
             My space
           </button>
         </Link>
-
-        <button
-          type="button"
-          className="btn btn-outline-info btn-rounded"
-          data-mdb-ripple-color="dark"
-          onClick={() => toggleEdit()}
-        >
-          Edit profile
-        </button>
-        {editTab && <EditProfileCard currentUser={currentUser} />}
+        <div>
+          <button
+            type="button"
+            className="btn btn-outline-info btn-rounded "
+            data-mdb-ripple-color="dark"
+            onClick={() => toggleEdit()}
+          >
+            Edit profile
+          </button>
+        </div>
       </div>
     </div>
   ) : (

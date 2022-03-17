@@ -14,7 +14,7 @@ export default function EditProfile(props){
 
     const [imageUrl, setImageUrl] = useState("");
     const [formData, setFormData] = useState({
-        username: props.currentUser.username,
+      username: props.currentUser.username,
     })
 
     const handleFileUpload = (event) => {
