@@ -51,7 +51,7 @@ export default function EventCard(props) {
             <Card>
                 <Card.Img variant="top" width={400} src={imageUrl} alt="eventImg" />
                 <Card.Body>
-                    <Card.Title><Link to={`/events/${_id}`}>
+                    <Card.Title><Link style={{ textDecoration: 'none', color: 'rgb(75, 180, 177)'}} to={`/events/${_id}`}>
                     <h3>{title}</h3>
                     </Link></Card.Title>
                 <Card.Text>
