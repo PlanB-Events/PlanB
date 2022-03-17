@@ -1,25 +1,32 @@
 # PlanB - Events
-
+testing hola
 <br>
 
 ## Description
 
-Description goes here...
+PlanB Events. is an app for connecting users looking for a plan with the activities available in the vibrant city of Barcelona. 
+Users can browse by their preferred category, date and have a look at the locations, see what’s closer to them, and finally join the events!
 
 ## User Stories
 
--  **Signup:** Explanation here...
--  **Login:** Explanation here...
--  **Logout:** Explanation here...
--  **Create Event** Explanation here...
--  **Edit and Delete Event** Explanation here...
--  **Join events** Explanation here...
--  **Become host of a Space** Explanation here...
--  **Edit or Delete your Space** Explanation here...
+-  **Signup:** 
+-  **Login:** 
+-  **Logout:** 
+-  **Create Event**
+-  **Delete Event** 
+-  **Join events** 
+-  **Become host of an Event** 
+-  **Edit or Delete your Space** 
 
 ## Backlog
 
-List goes here...
+- Past events info & Carrousel at homepage
+- Filter button by date for the events
+- Add individual map to every event's details
+- Select the space directly as a dropdown option in the Creating Event feature
+- Surprise location event! Users don’t get the event’s location until 24h before the event
+- Receive suggestions and notifications based on your profile (users choose a category interesting for them and receive notifications of the new available events).
+
 
 <br>
 
@@ -37,7 +44,7 @@ List goes here...
 | "/events/create"      | EventCreatePage     | User Only       | List of spaces & create form      |
 |  "/profile/myspace"   | MySpacePage         | User Only       | Create space form, details, delete|
 |   "/events/map"       | EventsMapPage       | Public          | Map with all events locations     |
-|"/events/getmeaplanb"  | EventsDetailPage    | Public          | Details of a random event         |    
+|"/events/random"       | EventsDetailPage    | Public          | Details of a random event         |    
 
 
 ----------------
@@ -49,6 +56,7 @@ List goes here...
 - Loading
 - IsPrivate
 - Navbar
+- BackButton
 - more...
 
 
@@ -60,13 +68,23 @@ List goes here...
   - authService.verify(storedToken)
 
 - Events Service
-  - more...
+  -  eventsService.createEvent 
+  -  eventsService.getSelectedEvents 
+  -  eventsService.getAllEvents 
+  -  eventsService.getRandomEvent 
+  -  eventsService.deleteEvent
   
 - Users Service 
-  - more...
+  - userService.editUser(id, requestBody)
+  - userService.getUser(id) 
+  - userService.joinEvent(userId, eventId)
+  - userService.leaveEvent(userId, eventId)
 
 - Spaces Service
-  - more...
+  - spacesServices.createSpace(requestBody)
+  - spacesServices.getAllSpaces()
+  - spacesServices.getSpace(id)
+  - spacesServices.deleteSpace(spaceId, ownerId)
 
 <br>
 
@@ -168,18 +186,16 @@ Space model
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com/b/PBqtkUFX/curasan) 
-or picture of your physical board
+[Link to your trello board](https://trello.com/b/dPLlhF2h/project-3-planb) 
+
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](https://github.com/screeeen/project-client)
+[repository Link](https://github.com/PlanB-Events/PlanB)
 
-[Server repository Link](https://github.com/screeeen/project-server)
-
-[Deployed App Link](http://heroku.com)
+[Deployed App Link](https://pbevents-fan.herokuapp.com/)
 
 ### Slides
 
