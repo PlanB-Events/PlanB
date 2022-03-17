@@ -4,6 +4,7 @@ import eventsService from "../services/events";
 import LoadingComponent from "../components/Loading";
 import {AuthContext} from "../context/auth.context";
 import userService from "../services/users";
+import GoBackButton from "../components/GoBackButton";
 
 export default function EventsDetailsPage() {
     const { id } = useParams("id");
@@ -88,8 +89,13 @@ export default function EventsDetailsPage() {
             <p>Log in to join this event!</p>
             }
 
+            <GoBackButton/>
 
+<<<<<<< HEAD
             {backpage && <Link type="button" className="btn btn-outline-info btn-rounded" data-mdb-ripple-color="dark" to={`${backpage}`}>Go back to map</Link>}
+=======
+            {/* {backpage && <Link to={`${backpage}`}>Go back to map</Link>} */}
+>>>>>>> bef5f00daa097a4c50cb948bd310e7a1d1f874e4
             </div>
         </div>
         </div>

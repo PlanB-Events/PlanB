@@ -127,7 +127,11 @@ export default function ProfilePage() {
       >
         Edit profile
       </button>
+<<<<<<< HEAD
      
+=======
+      {editTab && <EditProfileCard currentUser={currentUser}/>}
+>>>>>>> bef5f00daa097a4c50cb948bd310e7a1d1f874e4
     </div>
     </div>
   ) : (

@@ -6,6 +6,7 @@ import covidTrueLogo from "../assets/virus-test-tube-icon-black-green.svg";
 import wheelchairTrueLogo from "../assets/wheelchair.svg";
 import LoadingComponent from "./Loading";
 import { useNavigate } from "react-router-dom";
+import GoBackButton from "./GoBackButton";
 
 export default function SpaceDetails(props) {
   const [currentSpace, setCurrentSpace] = useState({});
@@ -45,10 +46,15 @@ export default function SpaceDetails(props) {
           </p>
           <h4 className="card-text">Available Date:</h4>
 
+<<<<<<< HEAD
           <p className="card-text">
             {" "}
             {currentSpace.availableDates[0].slice(0, 10)}
           </p>
+=======
+            <button onClick={deleteSpace}>Delete the space</button>
+            <GoBackButton />
+>>>>>>> bef5f00daa097a4c50cb948bd310e7a1d1f874e4
 
           <h4 className="card-text">Capacity:</h4>
           <p className="card-text">{currentSpace.capacity}</p>

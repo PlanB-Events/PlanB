@@ -1,4 +1,5 @@
 import { useContext, useState } from "react"
+import { propTypes } from "react-bootstrap/esm/Image";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context"
 import cloudinaryService from "../services/cloudinary";
@@ -6,14 +7,14 @@ import userService from "../services/users";
 
 
 
-export default function EditProfile(){
+export default function EditProfile(props){
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
     const {id} = useParams("id")
 
     const [imageUrl, setImageUrl] = useState("");
     const [formData, setFormData] = useState({
-        username:"",
+        username: props.currentUser.username,
     })
 
     const handleFileUpload = (event) => {

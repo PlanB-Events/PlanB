@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import spacesService from "../services/spaces";
 import cloudinaryService from "../services/cloudinary";
 import { AuthContext } from "../context/auth.context";
 import axios from "axios";
+import GoBackButton from "./GoBackButton";
 
 export default function CreateSpaceForm() {
   const { user } = useContext(AuthContext);
@@ -195,6 +196,7 @@ export default function CreateSpaceForm() {
             onChange={handleDirectionChange}
             className="form-control"
           />
+          <p className="addressApi">{apiAddress ? apiAddress : "Selected addres here"}</p>
         </div>
 
         <div className="mb-3">
@@ -252,6 +254,7 @@ export default function CreateSpaceForm() {
         >
           Submit
         </button>
+        <GoBackButton />
       </form>
     </div>
   );
