@@ -16,10 +16,9 @@ import MapPage from "./pages/MapPage.jsx";
 import EventsDetailsPage from "./pages/EventsDetailsPage";
 import MySpacePage from "./pages/MySpacePage";
 import userService from "./services/users.js";
+import eventsService from "./services/events.js";
 
 export default function App() {
-
-
 
   const navigate= useNavigate()
 
@@ -33,6 +32,14 @@ export default function App() {
       setCurrentUser(foundUser)
     })
   }, [user._id])
+
+  const [randomEvent, setRandomEvent] = useState({});
+
+  useEffect(() => {
+    eventsService.getRandomEvent().then((event) => {
+     setRandomEvent(event);
+    })
+  }, []);
 
   function handleLogOut(){
     logOutUser();
@@ -55,7 +62,7 @@ export default function App() {
           </Link>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/events/map">Map</Nav.Link>
-            <Nav.Link as={Link} to="/">Surprise me!</Nav.Link>
+            <Nav.Link as={Link} to={`/events/${randomEvent._id}`}>Random PB!</Nav.Link>
             <NavDropdown title={isLoggedIn ? <img src={currentUser.imageUrl} style={{ width: 30, height: 30, borderRadius: 50}} alt="dropdown-logo"/>  : <img src={logo} width={30} height={27} alt="dropdown-logo"/>}>
               {!isLoggedIn && <NavDropdown.Item as={Link} to="/auth">Log in</NavDropdown.Item>}
              {isLoggedIn && <NavDropdown.Item as={Link} to={`/profile/${user._id}`}>Profile</NavDropdown.Item>}
@@ -66,7 +73,7 @@ export default function App() {
       </Navbar>
 
       <Routes>
-        <Route exact path={"/"} element={<HomePage/>} />
+        <Route exact path={"/"} element={<HomePage randomEvent={randomEvent}/>} />
         <Route exact path={"/auth"} element={<AuthPage/>} />
         <Route exact path={"/events"} element={<EventsMainPage/>} />
         <Route exact path={"/events/:id"} element={<EventsDetailsPage/>} />

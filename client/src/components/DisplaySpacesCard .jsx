@@ -15,15 +15,15 @@ export default function DisplaySpacesCard (){
 
 
     return(
-        <div>
-          <div>
+        <div className="spaceContainerSection">
           <h2>Browse Spaces</h2>
-          {allSpaces.map((space)=>{
-            return(
-                <SpaceCard key={space._id} space={space}/>
-               )
-          })}
-        </div>
+          <div className="spacesContainer">
+            {allSpaces.map((space)=>{
+                return(
+                    <SpaceCard key={space._id} space={space}/>
+                )
+            })}
+          </div>
         </div>
     )
 }
